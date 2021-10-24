@@ -3,13 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		813660BFA1958C6B60596A09 /* Pods_Reflex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA2586FC7B206571D7B3DDD /* Pods_Reflex.framework */; };
 		C30D29862620020B00D89649 /* Reflex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C30D297C2620020B00D89649 /* Reflex.framework */; };
-		C30D298B2620020B00D89649 /* ReflexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30D298A2620020B00D89649 /* ReflexTests.swift */; };
 		C30D298D2620020B00D89649 /* Reflex.h in Headers */ = {isa = PBXBuildFile; fileRef = C30D297F2620020B00D89649 /* Reflex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3442AB02624D62800693972 /* SampleTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3442AAF2624D62800693972 /* SampleTypes.swift */; };
+		C3442AC22624D83700693972 /* FLEXSwiftMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3442AC12624D83700693972 /* FLEXSwiftMirror.swift */; };
+		C3442ADB2624DBB500693972 /* Echo in Frameworks */ = {isa = PBXBuildFile; productRef = C3442ADA2624DBB500693972 /* Echo */; };
+		C34879E02724F34100815379 /* ReflexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879DF2724F34100815379 /* ReflexTests.swift */; };
+		C34879E92725118000815379 /* EchoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879E72725118000815379 /* EchoExtensions.swift */; };
+		C34879EA2725118000815379 /* PointerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879E82725118000815379 /* PointerExtensions.swift */; };
+		C3EA55C826279A7E007611C8 /* ReflexObjcTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3EA55C726279A7E007611C8 /* ReflexObjcTests.mm */; };
+		D8C8DD44A58AC967069B27DC /* Pods_ReflexTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BFE80038B9C34405E798EEA /* Pods_ReflexTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +31,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		106443FA9D5617300C1D066E /* Pods-Reflex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reflex.debug.xcconfig"; path = "Target Support Files/Pods-Reflex/Pods-Reflex.debug.xcconfig"; sourceTree = "<group>"; };
+		1BFE80038B9C34405E798EEA /* Pods_ReflexTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReflexTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55A138E0C5C1605D18DD2BD5 /* Pods-libReflex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-libReflex.debug.xcconfig"; path = "Target Support Files/Pods-libReflex/Pods-libReflex.debug.xcconfig"; sourceTree = "<group>"; };
+		5CB75A0801ED6EBD2576CD64 /* Pods-ReflexTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReflexTests.debug.xcconfig"; path = "Target Support Files/Pods-ReflexTests/Pods-ReflexTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5EA2586FC7B206571D7B3DDD /* Pods_Reflex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reflex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6571D7A94C5E78871885CFC4 /* Pods_libReflex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_libReflex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EC9FAEEB1AE7FE7ABE74D65 /* Pods-libReflex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-libReflex.release.xcconfig"; path = "Target Support Files/Pods-libReflex/Pods-libReflex.release.xcconfig"; sourceTree = "<group>"; };
+		AF1089C723178EE48356FB17 /* Pods-ReflexTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReflexTests.release.xcconfig"; path = "Target Support Files/Pods-ReflexTests/Pods-ReflexTests.release.xcconfig"; sourceTree = "<group>"; };
 		C30D297C2620020B00D89649 /* Reflex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reflex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30D297F2620020B00D89649 /* Reflex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reflex.h; sourceTree = "<group>"; };
 		C30D29802620020B00D89649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C30D29852620020B00D89649 /* ReflexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReflexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C30D298A2620020B00D89649 /* ReflexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflexTests.swift; sourceTree = "<group>"; };
 		C30D298C2620020B00D89649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3442AAF2624D62800693972 /* SampleTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTypes.swift; sourceTree = "<group>"; };
+		C3442AC12624D83700693972 /* FLEXSwiftMirror.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLEXSwiftMirror.swift; sourceTree = "<group>"; };
+		C34879DF2724F34100815379 /* ReflexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflexTests.swift; sourceTree = "<group>"; };
+		C34879E72725118000815379 /* EchoExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EchoExtensions.swift; sourceTree = "<group>"; };
+		C34879E82725118000815379 /* PointerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerExtensions.swift; sourceTree = "<group>"; };
+		C3EA55C526279A7E007611C8 /* ReflexTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReflexTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		C3EA55C626279A7E007611C8 /* ReflexObjcTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReflexObjcTests.h; sourceTree = "<group>"; };
+		C3EA55C726279A7E007611C8 /* ReflexObjcTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ReflexObjcTests.mm; sourceTree = "<group>"; };
+		FD873196D5E78CE3CD132E9A /* Pods-Reflex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reflex.release.xcconfig"; path = "Target Support Files/Pods-Reflex/Pods-Reflex.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				813660BFA1958C6B60596A09 /* Pods_Reflex.framework in Frameworks */,
+				C3442ADB2624DBB500693972 /* Echo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,18 +70,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				C30D29862620020B00D89649 /* Reflex.framework in Frameworks */,
+				D8C8DD44A58AC967069B27DC /* Pods_ReflexTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7BFAD7CC5644929D0152799A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				106443FA9D5617300C1D066E /* Pods-Reflex.debug.xcconfig */,
+				FD873196D5E78CE3CD132E9A /* Pods-Reflex.release.xcconfig */,
+				55A138E0C5C1605D18DD2BD5 /* Pods-libReflex.debug.xcconfig */,
+				8EC9FAEEB1AE7FE7ABE74D65 /* Pods-libReflex.release.xcconfig */,
+				5CB75A0801ED6EBD2576CD64 /* Pods-ReflexTests.debug.xcconfig */,
+				AF1089C723178EE48356FB17 /* Pods-ReflexTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C30D29722620020B00D89649 = {
 			isa = PBXGroup;
 			children = (
 				C30D297E2620020B00D89649 /* Reflex */,
 				C30D29892620020B00D89649 /* ReflexTests */,
 				C30D297D2620020B00D89649 /* Products */,
+				C30D29CE2620E9EF00D89649 /* Frameworks */,
+				7BFAD7CC5644929D0152799A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,8 +113,11 @@
 		C30D297E2620020B00D89649 /* Reflex */ = {
 			isa = PBXGroup;
 			children = (
-				C30D297F2620020B00D89649 /* Reflex.h */,
 				C30D29802620020B00D89649 /* Info.plist */,
+				C30D297F2620020B00D89649 /* Reflex.h */,
+				C3442AC12624D83700693972 /* FLEXSwiftMirror.swift */,
+				C34879E72725118000815379 /* EchoExtensions.swift */,
+				C34879E82725118000815379 /* PointerExtensions.swift */,
 			);
 			path = Reflex;
 			sourceTree = "<group>";
@@ -80,10 +125,24 @@
 		C30D29892620020B00D89649 /* ReflexTests */ = {
 			isa = PBXGroup;
 			children = (
-				C30D298A2620020B00D89649 /* ReflexTests.swift */,
 				C30D298C2620020B00D89649 /* Info.plist */,
+				C3EA55C526279A7E007611C8 /* ReflexTests-Bridging-Header.h */,
+				C3442AAF2624D62800693972 /* SampleTypes.swift */,
+				C34879DF2724F34100815379 /* ReflexTests.swift */,
+				C3EA55C626279A7E007611C8 /* ReflexObjcTests.h */,
+				C3EA55C726279A7E007611C8 /* ReflexObjcTests.mm */,
 			);
 			path = ReflexTests;
+			sourceTree = "<group>";
+		};
+		C30D29CE2620E9EF00D89649 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6571D7A94C5E78871885CFC4 /* Pods_libReflex.framework */,
+				5EA2586FC7B206571D7B3DDD /* Pods_Reflex.framework */,
+				1BFE80038B9C34405E798EEA /* Pods_ReflexTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,6 +163,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C30D29902620020B00D89649 /* Build configuration list for PBXNativeTarget "Reflex" */;
 			buildPhases = (
+				1D55EF015C86AA46E4360430 /* [CP] Check Pods Manifest.lock */,
 				C30D29772620020B00D89649 /* Headers */,
 				C30D29782620020B00D89649 /* Sources */,
 				C30D29792620020B00D89649 /* Frameworks */,
@@ -114,6 +174,9 @@
 			dependencies = (
 			);
 			name = Reflex;
+			packageProductDependencies = (
+				C3442ADA2624DBB500693972 /* Echo */,
+			);
 			productName = Reflex;
 			productReference = C30D297C2620020B00D89649 /* Reflex.framework */;
 			productType = "com.apple.product-type.framework";
@@ -122,9 +185,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C30D29932620020B00D89649 /* Build configuration list for PBXNativeTarget "ReflexTests" */;
 			buildPhases = (
+				E46DF7A93A243732CF61C347 /* [CP] Check Pods Manifest.lock */,
 				C30D29812620020B00D89649 /* Sources */,
 				C30D29822620020B00D89649 /* Frameworks */,
 				C30D29832620020B00D89649 /* Resources */,
+				5258E45AE849F7ADDFDAC347 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +197,8 @@
 				C30D29882620020B00D89649 /* PBXTargetDependency */,
 			);
 			name = ReflexTests;
+			packageProductDependencies = (
+			);
 			productName = ReflexTests;
 			productReference = C30D29852620020B00D89649 /* ReflexTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -142,14 +209,18 @@
 		C30D29732620020B00D89649 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = FLEX;
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
+				ORGANIZATIONNAME = "Tanner Bennett";
 				TargetAttributes = {
 					C30D297B2620020B00D89649 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					C30D29842620020B00D89649 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -162,6 +233,9 @@
 				Base,
 			);
 			mainGroup = C30D29722620020B00D89649;
+			packageReferences = (
+				C3442AD92624DBB500693972 /* XCRemoteSwiftPackageReference "Echo" */,
+			);
 			productRefGroup = C30D297D2620020B00D89649 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -189,11 +263,78 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1D55EF015C86AA46E4360430 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Reflex-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5258E45AE849F7ADDFDAC347 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReflexTests/Pods-ReflexTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReflexTests/Pods-ReflexTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReflexTests/Pods-ReflexTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E46DF7A93A243732CF61C347 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReflexTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C30D29782620020B00D89649 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C34879EA2725118000815379 /* PointerExtensions.swift in Sources */,
+				C34879E92725118000815379 /* EchoExtensions.swift in Sources */,
+				C3442AC22624D83700693972 /* FLEXSwiftMirror.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +342,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C30D298B2620020B00D89649 /* ReflexTests.swift in Sources */,
+				C34879E02724F34100815379 /* ReflexTests.swift in Sources */,
+				C3EA55C826279A7E007611C8 /* ReflexObjcTests.mm in Sources */,
+				C3442AB02624D62800693972 /* SampleTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +411,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -326,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -340,7 +483,9 @@
 		};
 		C30D29912620020B00D89649 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 106443FA9D5617300C1D066E /* Pods-Reflex.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = S6N2F22V2Z;
@@ -349,6 +494,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Reflex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -357,6 +503,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.flextool.Reflex;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,7 +512,9 @@
 		};
 		C30D29922620020B00D89649 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD873196D5E78CE3CD132E9A /* Pods-Reflex.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = S6N2F22V2Z;
@@ -373,6 +523,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Reflex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -381,6 +532,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.flextool.Reflex;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -388,10 +540,14 @@
 		};
 		C30D29942620020B00D89649 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CB75A0801ED6EBD2576CD64 /* Pods-ReflexTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S6N2F22V2Z;
 				INFOPLIST_FILE = ReflexTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,6 +555,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.flextool.ReflexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ReflexTests/ReflexTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -406,10 +564,14 @@
 		};
 		C30D29952620020B00D89649 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF1089C723178EE48356FB17 /* Pods-ReflexTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S6N2F22V2Z;
 				INFOPLIST_FILE = ReflexTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -417,6 +579,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.flextool.ReflexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ReflexTests/ReflexTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -453,6 +616,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C3442AD92624DBB500693972 /* XCRemoteSwiftPackageReference "Echo" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Azoy/Echo";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C3442ADA2624DBB500693972 /* Echo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3442AD92624DBB500693972 /* XCRemoteSwiftPackageReference "Echo" */;
+			productName = Echo;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C30D29732620020B00D89649 /* Project object */;
 }

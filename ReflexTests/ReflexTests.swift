@@ -2,32 +2,119 @@
 //  ReflexTests.swift
 //  ReflexTests
 //
-//  Created by Tanner on 4/8/21.
+//  Created by Tanner Bennett on 4/8/21.
 //
 
 import XCTest
+import Combine
+import Echo
 @testable import Reflex
 
 class ReflexTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var bob = Employee(name: "Bob", age: 55, position: "Programmer")
+    lazy var employee = reflectClass(bob)!
+    lazy var person = employee.superclassMetadata!
+    lazy var employeeFields = employee.descriptor.fields
+    lazy var personFields = person.descriptor.fields
+    
+    func assertFieldsEqual(_ expectedNames: [String], _ fields: FieldDescriptor) {
+        let fieldNames: Set<String> = Set(fields.records.map(\.name))
+        XCTAssertEqual(fieldNames, Set(expectedNames))
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testPointerSemantics() {
+        let point = Point(x: 5, y: 7)
+        let yval = withUnsafeBytes(of: point) { (ptr) -> Int in
+            return ptr.load(fromByteOffset: MemoryLayout<Int>.size, as: Int.self)
+        }
+        
+        XCTAssertEqual(yval, 7)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testKVCGetters() {
+        assertFieldsEqual(["position", "salary", "cubicleSize"], employeeFields)
+        assertFieldsEqual(["name", "age"], personFields)
+        
+        XCTAssertEqual(bob.position, employee.getValue(forKey: "position", from: bob))
+        XCTAssertEqual(bob.salary, employee.getValue(forKey: "salary", from: bob))
+        XCTAssertEqual(bob.cubicleSize, employee.getValue(forKey: "cubicleSize", from: bob))
+        XCTAssertEqual(bob.name, person.getValue(forKey: "name", from: bob))
+        XCTAssertEqual(bob.age, person.getValue(forKey: "age", from: bob))
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testKVCSetters() {
+        person.set(value: "Robert", forKey: "name", on: &bob)
+        XCTAssertEqual("Robert", bob.name)
+        XCTAssertEqual(bob.name, person.getValue(forKey: "name", from: bob))
+        
+        person.set(value: 23, forKey: "age", on: &bob)
+        XCTAssertEqual(23, bob.age)
+        XCTAssertEqual(bob.age, person.getValue(forKey: "age", from: bob))
+        
+        employee.set(value: "Janitor", forKey: "position", on: &bob)
+        XCTAssertEqual("Janitor", bob.position)
+        XCTAssertEqual(bob.position, employee.getValue(forKey: "position", from: bob))
+        
+        employee.set(value: 3.14159, forKey: "salary", on: &bob)
+        XCTAssertEqual(3.14159, bob.salary)
+        XCTAssertEqual(bob.salary, employee.getValue(forKey: "salary", from: bob))
+    }
+    
+    func testTypeNames() {
+        XCTAssertEqual(person.descriptor.name, "Person")
+    }
+    
+    func testAbilityToDetectSwiftTypes() {
+        let nonSwiftObjects: [Any] = [
+            NSObject.self,
+            NSObject(),
+            UIView.self,
+            UIView(),
+            "a string",
+            12345,
+            self.superclass!,
+        ]
+        
+        let swiftObjects: [Any] = [
+            ReflexTests.self,
+            self,
+            Person.self,
+            bob,
+            [1, 2, 3],
+            [Point(x: 1, y: 2)]
+        ]
+        
+        for obj in swiftObjects {
+            XCTAssertTrue(isSwiftObjectOrClass(obj))
+        }
+        for obj in nonSwiftObjects {
+            XCTAssertFalse(isSwiftObjectOrClass(obj))
         }
     }
-
+    
+    @available(iOS 13.0, *)
+    func testTypeDescriptions() {
+        typealias LongPublisher = Publishers.CombineLatest<AnyPublisher<Any, Error>,AnyPublisher<Any, Error>>
+        
+        XCTAssertEqual("Any",        reflect(Any.self).description)
+        XCTAssertEqual("AnyObject",  reflect(AnyObject.self).description)
+        XCTAssertEqual("AnyClass",   reflect(AnyClass.self).description)
+        
+        XCTAssertEqual("Counter<Int>",         reflect(Counter<Int>.self).description)
+        XCTAssertEqual("Array<Int>",           reflect([Int].self).description)
+        XCTAssertEqual("(id: Int, 1: Person)", reflect((id: Int, Person).self).description)
+        XCTAssertEqual("Counter<Int>",         reflect(Counter<Int>.self).description)
+        XCTAssertEqual("Array<Counter<Int>>",  reflect([Counter<Int>].self).description)
+        XCTAssertEqual("CombineLatest<AnyPublisher<Any, Error>, AnyPublisher<Any, Error>>",
+                       reflect(LongPublisher.self).description
+        )
+        
+        let ikur: (inout Person) -> Bool = isKnownUniquelyReferenced
+        XCTAssertEqual("(ReflexTests) -> () -> ()", reflect(Self.testTypeDescriptions).description)
+        XCTAssertEqual("(Person) -> Bool", reflect(ikur).description)
+    }
+    
+    func testValueDescriptions() {
+        
+    }
 }
