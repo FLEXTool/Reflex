@@ -69,6 +69,35 @@ extension Metadata {
         
         return try _openExistential(self.type, do: cast(_:))
     }
+    
+    var typeEncoding: FLEXTypeEncoding {
+        switch self.kind {
+            case .class:
+                return .objcClass
+            case .struct:
+                return .structBegin
+            case .enum:
+                if (self as! EnumMetadata).descriptor.numPayloadCases > 0 {
+                    return .unknown
+                }
+                return .unknown // TODO: return proper sized int for enums?
+            case .optional:
+                return (self as! EnumMetadata).genericMetadata.first!.typeEncoding
+            case .tuple:
+                return .structBegin
+            case .foreignClass,
+                 .opaque,
+                 .function,
+                 .existential,
+                 .metatype,
+                 .objcClassWrapper,
+                 .existentialMetatype,
+                 .heapLocalVariable,
+                 .heapGenericLocalVariable,
+                 .errorObject:
+                return .unknown
+        }
+    }
 }
 
 extension StructMetadata {
