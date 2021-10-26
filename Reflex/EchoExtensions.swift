@@ -147,7 +147,7 @@ extension ContextualNominalType {
         return self.fields.first(where: { $0.name == key })?.type
     }
     
-    var _shallowFields: [Field] {
+    var shallowFields: [Field] {
         let r: [FieldRecord] = self.descriptor.fields.records
         return r.filter(\.hasMangledTypeName).map {
             return (
@@ -175,7 +175,7 @@ extension StructMetadata {
         ptr.storeBytes(of: value, type: type, offset: offset)
     }
     
-    var fields: [Field] { self._shallowFields }
+    var fields: [Field] { self.shallowFields }
 }
 
 extension ClassMetadata {
@@ -212,15 +212,15 @@ extension ClassMetadata {
     /// Consolidate all fields in the class hierarchy
     var fields: [Field] {
         if let sup = self.superclassMetadata, sup.isSwiftClass {
-            return self._shallowFields + sup.fields
+            return self.shallowFields + sup.fields
         }
         
-        return self._shallowFields
+        return self.shallowFields
     }
 }
 
 extension EnumMetadata {
-    var fields: [Field] { self._shallowFields }
+    var fields: [Field] { self.shallowFields }
 }
 
 // MARK: Protocol conformance checking
