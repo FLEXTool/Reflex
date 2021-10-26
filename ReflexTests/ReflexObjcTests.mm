@@ -90,3 +90,22 @@ extern "C" BOOL isSwiftObjectOrClass(id objOrClass) {
         return rodata & FAST_IS_SWIFT_LEGACY;
     }
 }
+
+@implementation RFView
+
+- (id)initWithColor:(UIColor *)color frame:(CGRect)frame {
+    self = [super init];
+    if (self) {
+        _color = color;
+        _frame = frame;
+        _alpha = 1;
+    }
+    
+    return self;
+}
+
+- (void)layoutSubviews {
+    
+}
+
+@end

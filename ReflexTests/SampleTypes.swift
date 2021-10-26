@@ -66,3 +66,42 @@ class Employee: Person {
         return self.job
     }
 }
+
+protocol Slidable {
+    var value: Double { get set }
+}
+
+/// 1 protocol (`Slidable`, `Equatable` does not appear?)
+/// 5 ivars (`smooth` is included)
+/// 1 property (the `@objc smooth`)
+/// 5 methods
+///     - `initWithColor:frame:`
+///     - `smooth`
+///     - `init`
+///     - `setRange:`
+///     - `setSmooth:`
+class RFSlider: RFView, Slidable {
+    var value = 0.0
+    var minValue = 0.0
+    var maxValue = 1.0
+    var step = 0.1
+    @objc var smooth = false
+    
+    func zero() {
+        value = self.minValue
+    }
+    
+    @objc
+    func setRange(_ range: NSRange) {
+        self.minValue = Double(range.location)
+        self.maxValue = self.minValue + Double(range.length)
+        
+        if self.value < self.minValue || self.value > self.maxValue {
+            self.zero()
+        }
+    }
+    
+    static func == (l: RFSlider, r: RFSlider) -> Bool {
+        return l.value == r.value
+    }
+}
