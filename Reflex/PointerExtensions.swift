@@ -83,3 +83,6 @@ postfix operator ~
 postfix func ~<T>(target: T) -> RawPointer {
     return unsafeBitCast(target, to: RawPointer.self)
 }
+prefix func ~<T,U>(target: T) -> U {
+    return unsafeBitCast(target, to: U.self)
+}
