@@ -16,6 +16,7 @@
 		C34879E02724F34100815379 /* ReflexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879DF2724F34100815379 /* ReflexTests.swift */; };
 		C34879E92725118000815379 /* EchoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879E72725118000815379 /* EchoExtensions.swift */; };
 		C34879EA2725118000815379 /* PointerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879E82725118000815379 /* PointerExtensions.swift */; };
+		C34879FA2725FE6600815379 /* FLEXSwiftMetadatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879F92725FE6600815379 /* FLEXSwiftMetadatas.swift */; };
 		C3EA55C826279A7E007611C8 /* ReflexObjcTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3EA55C726279A7E007611C8 /* ReflexObjcTests.mm */; };
 		D8C8DD44A58AC967069B27DC /* Pods_ReflexTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BFE80038B9C34405E798EEA /* Pods_ReflexTests.framework */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		C34879DF2724F34100815379 /* ReflexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflexTests.swift; sourceTree = "<group>"; };
 		C34879E72725118000815379 /* EchoExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EchoExtensions.swift; sourceTree = "<group>"; };
 		C34879E82725118000815379 /* PointerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerExtensions.swift; sourceTree = "<group>"; };
+		C34879F92725FE6600815379 /* FLEXSwiftMetadatas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLEXSwiftMetadatas.swift; sourceTree = "<group>"; };
 		C3EA55C526279A7E007611C8 /* ReflexTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReflexTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3EA55C626279A7E007611C8 /* ReflexObjcTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReflexObjcTests.h; sourceTree = "<group>"; };
 		C3EA55C726279A7E007611C8 /* ReflexObjcTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ReflexObjcTests.mm; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				C30D29802620020B00D89649 /* Info.plist */,
 				C30D297F2620020B00D89649 /* Reflex.h */,
 				C3442AC12624D83700693972 /* FLEXSwiftMirror.swift */,
+				C34879F92725FE6600815379 /* FLEXSwiftMetadatas.swift */,
 				C34879E72725118000815379 /* EchoExtensions.swift */,
 				C34879E82725118000815379 /* PointerExtensions.swift */,
 			);
@@ -335,6 +338,7 @@
 				C34879EA2725118000815379 /* PointerExtensions.swift in Sources */,
 				C34879E92725118000815379 /* EchoExtensions.swift in Sources */,
 				C3442AC22624D83700693972 /* FLEXSwiftMirror.swift in Sources */,
+				C34879FA2725FE6600815379 /* FLEXSwiftMetadatas.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
