@@ -9,6 +9,7 @@
 import Foundation
 import Echo
 import CEcho
+import FLEX
 
 typealias RawType = UnsafeRawPointer
 typealias Field = (name: String, type: Metadata)
