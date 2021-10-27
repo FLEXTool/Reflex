@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		813660BFA1958C6B60596A09 /* Pods_Reflex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA2586FC7B206571D7B3DDD /* Pods_Reflex.framework */; };
 		C30D29862620020B00D89649 /* Reflex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C30D297C2620020B00D89649 /* Reflex.framework */; };
 		C30D298D2620020B00D89649 /* Reflex.h in Headers */ = {isa = PBXBuildFile; fileRef = C30D297F2620020B00D89649 /* Reflex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3442AB02624D62800693972 /* SampleTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3442AAF2624D62800693972 /* SampleTypes.swift */; };
@@ -17,8 +16,8 @@
 		C34879E92725118000815379 /* EchoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879E72725118000815379 /* EchoExtensions.swift */; };
 		C34879EA2725118000815379 /* PointerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879E82725118000815379 /* PointerExtensions.swift */; };
 		C34879FA2725FE6600815379 /* FLEXSwiftMetadatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879F92725FE6600815379 /* FLEXSwiftMetadatas.swift */; };
+		C375EE72272B47C300828DA6 /* FLEX in Frameworks */ = {isa = PBXBuildFile; productRef = C375EE71272B47C300828DA6 /* FLEX */; };
 		C3EA55C826279A7E007611C8 /* ReflexObjcTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3EA55C726279A7E007611C8 /* ReflexObjcTests.mm */; };
-		D8C8DD44A58AC967069B27DC /* Pods_ReflexTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BFE80038B9C34405E798EEA /* Pods_ReflexTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +31,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		106443FA9D5617300C1D066E /* Pods-Reflex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reflex.debug.xcconfig"; path = "Target Support Files/Pods-Reflex/Pods-Reflex.debug.xcconfig"; sourceTree = "<group>"; };
-		1BFE80038B9C34405E798EEA /* Pods_ReflexTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReflexTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		55A138E0C5C1605D18DD2BD5 /* Pods-libReflex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-libReflex.debug.xcconfig"; path = "Target Support Files/Pods-libReflex/Pods-libReflex.debug.xcconfig"; sourceTree = "<group>"; };
-		5CB75A0801ED6EBD2576CD64 /* Pods-ReflexTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReflexTests.debug.xcconfig"; path = "Target Support Files/Pods-ReflexTests/Pods-ReflexTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5EA2586FC7B206571D7B3DDD /* Pods_Reflex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reflex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6571D7A94C5E78871885CFC4 /* Pods_libReflex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_libReflex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8EC9FAEEB1AE7FE7ABE74D65 /* Pods-libReflex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-libReflex.release.xcconfig"; path = "Target Support Files/Pods-libReflex/Pods-libReflex.release.xcconfig"; sourceTree = "<group>"; };
-		AF1089C723178EE48356FB17 /* Pods-ReflexTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReflexTests.release.xcconfig"; path = "Target Support Files/Pods-ReflexTests/Pods-ReflexTests.release.xcconfig"; sourceTree = "<group>"; };
 		C30D297C2620020B00D89649 /* Reflex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reflex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30D297F2620020B00D89649 /* Reflex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reflex.h; sourceTree = "<group>"; };
 		C30D29802620020B00D89649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,7 +45,6 @@
 		C3EA55C526279A7E007611C8 /* ReflexTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReflexTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3EA55C626279A7E007611C8 /* ReflexObjcTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReflexObjcTests.h; sourceTree = "<group>"; };
 		C3EA55C726279A7E007611C8 /* ReflexObjcTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ReflexObjcTests.mm; sourceTree = "<group>"; };
-		FD873196D5E78CE3CD132E9A /* Pods-Reflex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reflex.release.xcconfig"; path = "Target Support Files/Pods-Reflex/Pods-Reflex.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				813660BFA1958C6B60596A09 /* Pods_Reflex.framework in Frameworks */,
 				C3442ADB2624DBB500693972 /* Echo in Frameworks */,
+				C375EE72272B47C300828DA6 /* FLEX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,34 +62,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				C30D29862620020B00D89649 /* Reflex.framework in Frameworks */,
-				D8C8DD44A58AC967069B27DC /* Pods_ReflexTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7BFAD7CC5644929D0152799A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				106443FA9D5617300C1D066E /* Pods-Reflex.debug.xcconfig */,
-				FD873196D5E78CE3CD132E9A /* Pods-Reflex.release.xcconfig */,
-				55A138E0C5C1605D18DD2BD5 /* Pods-libReflex.debug.xcconfig */,
-				8EC9FAEEB1AE7FE7ABE74D65 /* Pods-libReflex.release.xcconfig */,
-				5CB75A0801ED6EBD2576CD64 /* Pods-ReflexTests.debug.xcconfig */,
-				AF1089C723178EE48356FB17 /* Pods-ReflexTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		C30D29722620020B00D89649 = {
 			isa = PBXGroup;
 			children = (
 				C30D297E2620020B00D89649 /* Reflex */,
 				C30D29892620020B00D89649 /* ReflexTests */,
 				C30D297D2620020B00D89649 /* Products */,
-				C30D29CE2620E9EF00D89649 /* Frameworks */,
-				7BFAD7CC5644929D0152799A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,16 +112,6 @@
 			path = ReflexTests;
 			sourceTree = "<group>";
 		};
-		C30D29CE2620E9EF00D89649 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6571D7A94C5E78871885CFC4 /* Pods_libReflex.framework */,
-				5EA2586FC7B206571D7B3DDD /* Pods_Reflex.framework */,
-				1BFE80038B9C34405E798EEA /* Pods_ReflexTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -166,7 +130,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C30D29902620020B00D89649 /* Build configuration list for PBXNativeTarget "Reflex" */;
 			buildPhases = (
-				1D55EF015C86AA46E4360430 /* [CP] Check Pods Manifest.lock */,
 				C30D29772620020B00D89649 /* Headers */,
 				C30D29782620020B00D89649 /* Sources */,
 				C30D29792620020B00D89649 /* Frameworks */,
@@ -179,6 +142,7 @@
 			name = Reflex;
 			packageProductDependencies = (
 				C3442ADA2624DBB500693972 /* Echo */,
+				C375EE71272B47C300828DA6 /* FLEX */,
 			);
 			productName = Reflex;
 			productReference = C30D297C2620020B00D89649 /* Reflex.framework */;
@@ -188,11 +152,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C30D29932620020B00D89649 /* Build configuration list for PBXNativeTarget "ReflexTests" */;
 			buildPhases = (
-				E46DF7A93A243732CF61C347 /* [CP] Check Pods Manifest.lock */,
 				C30D29812620020B00D89649 /* Sources */,
 				C30D29822620020B00D89649 /* Frameworks */,
 				C30D29832620020B00D89649 /* Resources */,
-				5258E45AE849F7ADDFDAC347 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -238,6 +200,7 @@
 			mainGroup = C30D29722620020B00D89649;
 			packageReferences = (
 				C3442AD92624DBB500693972 /* XCRemoteSwiftPackageReference "Echo" */,
+				C375EE70272B47C300828DA6 /* XCRemoteSwiftPackageReference "FLEX" */,
 			);
 			productRefGroup = C30D297D2620020B00D89649 /* Products */;
 			projectDirPath = "";
@@ -266,70 +229,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		1D55EF015C86AA46E4360430 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Reflex-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5258E45AE849F7ADDFDAC347 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReflexTests/Pods-ReflexTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReflexTests/Pods-ReflexTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReflexTests/Pods-ReflexTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E46DF7A93A243732CF61C347 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReflexTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		C30D29782620020B00D89649 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -338,6 +237,7 @@
 				C34879EA2725118000815379 /* PointerExtensions.swift in Sources */,
 				C34879E92725118000815379 /* EchoExtensions.swift in Sources */,
 				C3442AC22624D83700693972 /* FLEXSwiftMirror.swift in Sources */,
+				C3570319272BD341002DCB53 /* FLExtensions.swift in Sources */,
 				C34879FA2725FE6600815379 /* FLEXSwiftMetadatas.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,7 +387,6 @@
 		};
 		C30D29912620020B00D89649 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 106443FA9D5617300C1D066E /* Pods-Reflex.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -516,7 +415,6 @@
 		};
 		C30D29922620020B00D89649 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD873196D5E78CE3CD132E9A /* Pods-Reflex.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -544,7 +442,6 @@
 		};
 		C30D29942620020B00D89649 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5CB75A0801ED6EBD2576CD64 /* Pods-ReflexTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -568,7 +465,6 @@
 		};
 		C30D29952620020B00D89649 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF1089C723178EE48356FB17 /* Pods-ReflexTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -630,6 +526,14 @@
 				kind = branch;
 			};
 		};
+		C375EE70272B47C300828DA6 /* XCRemoteSwiftPackageReference "FLEX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "file:///Users/tanner/Repos/FLEX";
+			requirement = {
+				branch = wip/spm;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -637,6 +541,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C3442AD92624DBB500693972 /* XCRemoteSwiftPackageReference "Echo" */;
 			productName = Echo;
+		};
+		C375EE71272B47C300828DA6 /* FLEX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C375EE70272B47C300828DA6 /* XCRemoteSwiftPackageReference "FLEX" */;
+			productName = FLEX;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
