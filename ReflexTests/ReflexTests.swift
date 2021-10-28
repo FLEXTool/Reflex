@@ -118,9 +118,13 @@ class ReflexTests: XCTestCase {
         
     }
     
+    func testSwiftMirrorAvailable() {
+        XCTAssertNotNil(NSClassFromString("FLEXSwiftMirror"))
+    }
+    
     func testSwiftMirror() {
         let slider = RFSlider(color: .red, frame: .zero)
-        let mirror = FLEXSwiftMirror(reflecting: slider)
+        let mirror = SwiftMirror(reflecting: slider)
         
         XCTAssertEqual(mirror.ivars.count, 5)
         XCTAssertEqual(mirror.properties.count, 1)

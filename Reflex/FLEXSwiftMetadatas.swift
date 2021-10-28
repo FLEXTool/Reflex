@@ -9,7 +9,7 @@
 import FLEX
 import Echo
 
-extension FLEXSwiftMirror {
+extension SwiftMirror {
     static func imagePath(for pointer: UnsafeRawPointer) -> String? {
         var exeInfo = Dl_info()
         if (dladdr(pointer, &exeInfo) != 0) {
@@ -22,7 +22,8 @@ extension FLEXSwiftMirror {
     }
 }
 
-public class FLEXSwiftIvar: FLEXIvar {
+@objc(FLEXSwiftIvar)
+public class SwiftIvar: FLEXIvar {
     private let property: Field
     private let _offset: Int
     private let _imagePath: String?
@@ -38,7 +39,7 @@ public class FLEXSwiftIvar: FLEXIvar {
     init(field: Field, offset: Int, parent: Metadata) {
         self.property = field
         self._offset = offset
-        self._imagePath = FLEXSwiftMirror.imagePath(for: parent.ptr)
+        self._imagePath = SwiftMirror.imagePath(for: parent.ptr)
     }
     
     
@@ -86,7 +87,8 @@ public class FLEXSwiftIvar: FLEXIvar {
     }
 }
 
-public class FLEXSwiftProtocol: FLEXProtocol {
+@objc(FLEXSwiftProtocol)
+public class SwiftProtocol: FLEXProtocol {
     private let `protocol`: ProtocolDescriptor
     
     init(protocol ptcl: ProtocolDescriptor) {
@@ -118,7 +120,7 @@ public class FLEXSwiftProtocol: FLEXProtocol {
     
     public override var imagePath: String? { self._imagePath }
     
-    public override var protocols: [FLEXProtocol] { self.swiftProtocols.map(FLEXSwiftProtocol.init(protocol:)) }
+    public override var protocols: [FLEXProtocol] { self.swiftProtocols.map(SwiftProtocol.init(protocol:)) }
     public override var requiredMethods: [FLEXMethodDescription] { [] }
     public override var optionalMethods: [FLEXMethodDescription] { [] }
     

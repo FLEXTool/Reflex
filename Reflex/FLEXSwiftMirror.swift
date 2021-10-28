@@ -10,8 +10,8 @@ import Foundation
 import FLEX
 import Echo
 
-public class FLEXSwiftMirror: NSObject, FLEXMirrorProtocol {
-    
+@objc(FLEXSwiftMirror)
+public class SwiftMirror: NSObject, FLEXMirrorProtocol {
     
     /// Never a metaclass
     private let `class`: AnyClass
@@ -59,11 +59,11 @@ public class FLEXSwiftMirror: NSObject, FLEXMirrorProtocol {
     }
     
     private func examine() {
-        let swiftIvars: [FLEXSwiftIvar] = self.metadata.fields.map {
+        let swiftIvars: [SwiftIvar] = self.metadata.fields.map {
             .init(field: $0, class: self.metadata)
         }
         
-        let swiftProtos: [FLEXSwiftProtocol] = self.metadata.conformances
+        let swiftProtos: [SwiftProtocol] = self.metadata.conformances
             .map(\.protocol)
             .map { .init(protocol: $0) }
         
