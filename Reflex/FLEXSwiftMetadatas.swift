@@ -55,6 +55,8 @@ public class SwiftIvar: FLEXIvar {
     }
     
     public override func getValue(_ target: Any) -> Any? {
+        // Target must be AnyObject for KVC to work
+        let target = target as AnyObject
         let type = reflect(target)
         
         switch type.kind {
@@ -68,10 +70,11 @@ public class SwiftIvar: FLEXIvar {
     }
     
     public override func setValue(_ value: Any?, on target: Any) {
+        // Target must be AnyObject for KVC to work
+        var target = target as AnyObject
         let type = reflect(target)
         guard type.kind == .class else { return }
         
-        var target = target as AnyObject
         switch type.kind {
             case .struct: // Will never execute, but whatever
                 (type as! StructMetadata).set(value: value, forKey: self.name, on: &target)
