@@ -11,10 +11,14 @@ import FLEX
 import Echo
 
 public class FLEXSwiftMirror: NSObject, FLEXMirrorProtocol {
+    
+    
     /// Never a metaclass
     private let `class`: AnyClass
     private let metadata: ClassMetadata
-    private var flexMirror: FLEXMirror
+    private var flexMirror: FLEXMirror {
+        .init(reflecting: self.value)
+    }
     
     /// Really it's AnyObject
     public let value: Any
@@ -22,8 +26,10 @@ public class FLEXSwiftMirror: NSObject, FLEXMirrorProtocol {
     public let className: String
     
     private(set) public var properties: [FLEXProperty] = []
+    private(set) public var classProperties: [FLEXProperty] = []
     private(set) public var ivars: [FLEXIvar] = []
     private(set) public var methods: [FLEXMethod] = []
+    private(set) public var classMethods: [FLEXMethod] = []
     private(set) public var protocols: [FLEXProtocol] = []
     
     public var superMirror: FLEXMirrorProtocol? {
@@ -46,7 +52,6 @@ public class FLEXSwiftMirror: NSObject, FLEXMirrorProtocol {
         self.className = NSStringFromClass(cls)
         
         self.metadata = reflectClass(self.value)!
-        self.flexMirror = FLEXMirror(reflecting: self.value)
         self.class = self.isClass ? objectOrClass as! AnyClass : cls
         
         super.init()
@@ -65,8 +70,11 @@ public class FLEXSwiftMirror: NSObject, FLEXMirrorProtocol {
         let fm = self.flexMirror
         let ivarNames = Set(swiftIvars.map(\.name))
         self.ivars = swiftIvars + fm.ivars.filter { !ivarNames.contains($0.name) }
-        self.properties = fm.properties
-        self.methods = fm.methods
         self.protocols = swiftProtos + fm.protocols
+        
+        self.properties = fm.properties
+        self.classProperties = fm.properties
+        self.methods = fm.methods
+        self.classMethods = fm.classMethods
     }
 }
