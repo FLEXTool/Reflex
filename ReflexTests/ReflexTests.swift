@@ -126,9 +126,25 @@ class ReflexTests: XCTestCase {
         let slider = RFSlider(color: .red, frame: .zero)
         let mirror = SwiftMirror(reflecting: slider)
         
-        XCTAssertEqual(mirror.ivars.count, 5)
+        XCTAssertEqual(mirror.ivars.count, 6)
         XCTAssertEqual(mirror.properties.count, 1)
         XCTAssertEqual(mirror.methods.count, 5)
         XCTAssertEqual(mirror.protocols.count, 1)
+        
+        slider.tag = 0xAABB
+        
+        // Swift mirror
+        let smirror = Mirror(reflecting: slider)
+        let smtag = smirror.children.filter { $0.label == "tag" }.first!.value as! Int
+        XCTAssertEqual(smtag, slider.tag)
+        
+        let tagp = mirror.ivars.filter { $0.name == "tag" }.first!
+        let tag: Int = tagp.getValue(slider) as! Int
+        XCTAssertEqual(tag, slider.tag)
+        
+        tagp.setValue(0xDDCC, on: slider)
+        XCTAssertEqual(0xDDCC, slider.tag)
+        let newTag = tagp.getValue(slider) as! Int
+        XCTAssertEqual(newTag, slider.tag)
     }
 }

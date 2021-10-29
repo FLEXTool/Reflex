@@ -87,6 +87,8 @@ class RFSlider: RFView, Slidable {
     var step = 0.1
     @objc var smooth = false
     
+    var tag = 0
+    
     func zero() {
         value = self.minValue
     }
