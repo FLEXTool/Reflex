@@ -126,30 +126,36 @@ class ReflexTests: XCTestCase {
         let slider = RFSlider(color: .red, frame: .zero)
         let mirror = SwiftMirror(reflecting: slider)
         
-        XCTAssertEqual(mirror.ivars.count, 6)
+        XCTAssertEqual(mirror.ivars.count, 7)
         XCTAssertEqual(mirror.properties.count, 1)
-        XCTAssertEqual(mirror.methods.count, 5)
+        XCTAssertEqual(mirror.methods.count, 6)
         XCTAssertEqual(mirror.protocols.count, 1)
         
         slider.tag = 0xAABB
         
-        // Swift mirror
+        // Swift mirror //
+        
         let smirror = Mirror(reflecting: slider)
         let smtag = smirror.children.filter { $0.label == "tag" }.first!.value as! Int
         XCTAssertEqual(smtag, slider.tag)
         
-        // Echo, read
+        // Echo //
         let tagp = mirror.ivars.filter { $0.name == "tag" }.first!
+        let memop = mirror.ivars.filter { $0.name == "memo" }.first!
+        
+        // Read
         let tag: Int = tagp.getValue(slider) as! Int
         XCTAssertEqual(tag, slider.tag)
-        // Echo, write
+        // Write
         tagp.setValue(0xDDCC, on: slider)
         XCTAssertEqual(0xDDCC, slider.tag)
         let newTag = tagp.getValue(slider) as! Int
         XCTAssertEqual(newTag, slider.tag)
         
         // Type encodings
-        XCTAssertEqual(tagp.type, .long)
-        XCTAssertEqual(tagp.typeEncoding, "l")
+        XCTAssertEqual(tagp.type, .longLong)
+        XCTAssertEqual(tagp.typeEncoding, "q")
+        XCTAssertEqual(tagp.description, "NSInteger tag")
+        XCTAssertEqual(memop.description, "String memo")
     }
 }
