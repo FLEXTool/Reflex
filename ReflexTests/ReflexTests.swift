@@ -138,13 +138,18 @@ class ReflexTests: XCTestCase {
         let smtag = smirror.children.filter { $0.label == "tag" }.first!.value as! Int
         XCTAssertEqual(smtag, slider.tag)
         
+        // Echo, read
         let tagp = mirror.ivars.filter { $0.name == "tag" }.first!
         let tag: Int = tagp.getValue(slider) as! Int
         XCTAssertEqual(tag, slider.tag)
-        
+        // Echo, write
         tagp.setValue(0xDDCC, on: slider)
         XCTAssertEqual(0xDDCC, slider.tag)
         let newTag = tagp.getValue(slider) as! Int
         XCTAssertEqual(newTag, slider.tag)
+        
+        // Type encodings
+        XCTAssertEqual(tagp.type, .long)
+        XCTAssertEqual(tagp.typeEncoding, "l")
     }
 }
