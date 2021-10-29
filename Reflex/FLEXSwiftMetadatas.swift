@@ -53,6 +53,16 @@ public class SwiftIvar: FLEXIvar {
         "\(size) bytes, \(offset), \(typeEncoding)"
     }
     
+    public override func description() -> String! {
+        let desc = super.description()
+        // Make things like `String *foo` appear as `String foo`
+        if self.type == .objcObject, self.property.type is StructMetadata {
+            return desc?.replacingOccurrences(of: " *", with: " ")
+        }
+        
+        return desc
+    }
+    
     public override func getValue(_ target: Any) -> Any? {
         // Target must be AnyObject for KVC to work
         let target = target as AnyObject

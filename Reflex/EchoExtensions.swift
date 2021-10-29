@@ -34,32 +34,53 @@ extension KnownMetadata.Builtin {
         ~Int8.self: .char,
         ~Int16.self: .short,
         ~Int32.self: .int,
-        ~Int64.self: .long,
-        ~Int.self: .long,
+        ~Int64.self: .longLong,
+        ~Int.self: .longLong,
         ~UInt8.self: .unsignedChar,
         ~UInt16.self: .unsignedShort,
         ~UInt32.self: .unsignedInt,
-        ~UInt64.self: .unsignedLong,
-        ~UInt.self: .unsignedLong,
+        ~UInt64.self: .unsignedLongLong,
+        ~UInt.self: .unsignedLongLong,
         ~Float32.self: .float,
         ~Float64.self: .double,
     ]
 }
 
 extension KnownMetadata {
-    static var string: StructDescriptor = reflectStruct(String.self)!.descriptor
-    static var array: StructDescriptor = reflectStruct([Any].self)!.descriptor
-    static var dictionary: StructDescriptor = reflectStruct([String:Any].self)!.descriptor
-    static var date: StructDescriptor = reflectStruct(Date.self)!.descriptor
-    static var data: StructDescriptor = reflectStruct(Data.self)!.descriptor
-    static var url: StructDescriptor = reflectStruct(URL.self)!.descriptor
+    static let string: StructDescriptor = reflectStruct(String.self)!.descriptor
+    static let array: StructDescriptor = reflectStruct([Any].self)!.descriptor
+    static let dictionary: StructDescriptor = reflectStruct([String:Any].self)!.descriptor
+    static let date: StructDescriptor = reflectStruct(Date.self)!.descriptor
+    static let data: StructDescriptor = reflectStruct(Data.self)!.descriptor
+    static let url: StructDescriptor = reflectStruct(URL.self)!.descriptor
     
-    static var foundationStructs: Set<RawType> = Set(arrayLiteral: [
+    static let foundationStructs: Set<RawType> = Set([
         string, array, dictionary, date, data, url
     ].map(\.ptr))
     
-    static func isFoundationStruct(_ metadata: StructMetadata) -> Bool {
+    static func isFoundationStruct(_ metadata: Metadata) -> Bool {
+        guard let metadata = metadata as? StructMetadata else {
+            return false
+        }
+        
         return foundationStructs.contains(metadata.descriptor.ptr)
+    }
+    
+    static let foundationTypeDescriptorToClass: [RawType: AnyClass] = [
+        string.ptr: NSString.self,
+        array.ptr: NSArray.self,
+        dictionary.ptr: NSDictionary.self,
+        date.ptr: NSDate.self,
+        data.ptr: NSData.self,
+        url.ptr: NSURL.self,
+    ]
+    
+    static func classForStruct(_ metadata: Metadata) -> AnyClass? {
+        guard let metadata = metadata as? StructMetadata else {
+            return nil
+        }
+        
+        return foundationTypeDescriptorToClass[metadata.descriptor.ptr]
     }
 }
 
@@ -101,6 +122,7 @@ extension Metadata {
                     return KnownMetadata.Builtin.typeEncodings[~self.type]!
                 }
                 if KnownMetadata.isFoundationStruct((self as! StructMetadata)) {
+                    // TODO encode as proper type
                     return .objcObject
                 }
                 
@@ -133,14 +155,15 @@ extension Metadata {
     }
     
     var typeEncodingString: String {
-        String(Character(.init(UInt8(bitPattern: self.typeEncoding.rawValue))))
-    }
-}
-
-extension StructMetadata {
-    var isDateOrData: Bool {
-        return self.descriptor == KnownMetadata.date ||
-            self.descriptor == KnownMetadata.data
+        let encoding = self.typeEncoding
+        if encoding == .objcObject {
+            return FLEXTypeEncoding.encode(class: self.type)
+//            if self.kind == .struct {
+//                let cls = KnownMetadata.classForStruct(self)
+//            }
+        }
+        
+        return String(Character(.init(UInt8(bitPattern: self.typeEncoding.rawValue))))
     }
 }
 

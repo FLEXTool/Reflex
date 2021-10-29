@@ -16,6 +16,7 @@
 		C34879E92725118000815379 /* EchoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879E72725118000815379 /* EchoExtensions.swift */; };
 		C34879EA2725118000815379 /* PointerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879E82725118000815379 /* PointerExtensions.swift */; };
 		C34879FA2725FE6600815379 /* FLEXSwiftMetadatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879F92725FE6600815379 /* FLEXSwiftMetadatas.swift */; };
+		C3570319272BD341002DCB53 /* FLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3570318272BD341002DCB53 /* FLExtensions.swift */; };
 		C375EE72272B47C300828DA6 /* FLEX in Frameworks */ = {isa = PBXBuildFile; productRef = C375EE71272B47C300828DA6 /* FLEX */; };
 		C3EA55C826279A7E007611C8 /* ReflexObjcTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3EA55C726279A7E007611C8 /* ReflexObjcTests.mm */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		C34879E72725118000815379 /* EchoExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EchoExtensions.swift; sourceTree = "<group>"; };
 		C34879E82725118000815379 /* PointerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerExtensions.swift; sourceTree = "<group>"; };
 		C34879F92725FE6600815379 /* FLEXSwiftMetadatas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLEXSwiftMetadatas.swift; sourceTree = "<group>"; };
+		C3570318272BD341002DCB53 /* FLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLExtensions.swift; sourceTree = "<group>"; };
 		C3EA55C526279A7E007611C8 /* ReflexTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReflexTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3EA55C626279A7E007611C8 /* ReflexObjcTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReflexObjcTests.h; sourceTree = "<group>"; };
 		C3EA55C726279A7E007611C8 /* ReflexObjcTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ReflexObjcTests.mm; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				C34879F92725FE6600815379 /* FLEXSwiftMetadatas.swift */,
 				C34879E72725118000815379 /* EchoExtensions.swift */,
 				C34879E82725118000815379 /* PointerExtensions.swift */,
+				C3570318272BD341002DCB53 /* FLExtensions.swift */,
 			);
 			path = Reflex;
 			sourceTree = "<group>";
