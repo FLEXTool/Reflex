@@ -20,28 +20,49 @@ typealias Field = (name: String, type: Metadata)
 extension KnownMetadata.Builtin {
     static var supported: Set<RawType> = Set(_typePtrs)
     
-    private static var _types: [Any.Type] {
-        return [
-            Int8.self, Int16.self, Int32.self, Int64.self, Int.self,
-            UInt8.self, UInt16.self, UInt32.self, UInt64.self, UInt.self,
-            Float32.self, Float64.self, Float.self, Double.self
-        ]
-    }
+    private static var _types: [Any.Type] = [
+        Int8.self, Int16.self, Int32.self, Int64.self, Int.self,
+        UInt8.self, UInt16.self, UInt32.self, UInt64.self, UInt.self,
+        Float32.self, Float64.self, Float.self, Double.self
+    ]
     
     private static var _typePtrs: [RawType] {
-        return self._types.map({ type in
-            let metadata = reflect(type)
-            return metadata.ptr
-        })
+        return self._types.map { ~$0 }
     }
+    
+    static var typeEncodings: [RawType: FLEXTypeEncoding] = [
+        ~Int8.self: .char,
+        ~Int16.self: .short,
+        ~Int32.self: .int,
+        ~Int64.self: .long,
+        ~Int.self: .long,
+        ~UInt8.self: .unsignedChar,
+        ~UInt16.self: .unsignedShort,
+        ~UInt32.self: .unsignedInt,
+        ~UInt64.self: .unsignedLong,
+        ~UInt.self: .unsignedLong,
+        ~Float32.self: .float,
+        ~Float64.self: .double,
+        ~Float.self: .float,
+        ~Double.self: .double,
+    ]
 }
 
 extension KnownMetadata {
+    static var string: StructDescriptor = reflectStruct(String.self)!.descriptor
     static var array: StructDescriptor = reflectStruct([Any].self)!.descriptor
     static var dictionary: StructDescriptor = reflectStruct([String:Any].self)!.descriptor
     static var date: StructDescriptor = reflectStruct(Date.self)!.descriptor
     static var data: StructDescriptor = reflectStruct(Data.self)!.descriptor
     static var url: StructDescriptor = reflectStruct(URL.self)!.descriptor
+    
+    static var foundationStructs: Set<RawType> = Set(arrayLiteral: [
+        string, array, dictionary, date, data, url
+    ].map(\.ptr))
+    
+    static func isFoundationStruct(_ metadata: StructMetadata) -> Bool {
+        return foundationStructs.contains(metadata.descriptor.ptr)
+    }
 }
 
 extension Metadata {
@@ -74,18 +95,31 @@ extension Metadata {
     var typeEncoding: FLEXTypeEncoding {
         switch self.kind {
             case .class:
-                return .objcClass
+                return .objcObject
+                
             case .struct:
+                // Hard-code types for builtin types and a few foundation structs
+                if self.isBuiltin {
+                    return KnownMetadata.Builtin.typeEncodings[~self.type]!
+                }
+                if KnownMetadata.isFoundationStruct((self as! StructMetadata)) {
+                    return .objcObject
+                }
+                
                 return .structBegin
+                
             case .enum:
                 if (self as! EnumMetadata).descriptor.numPayloadCases > 0 {
                     return .unknown
                 }
                 return .unknown // TODO: return proper sized int for enums?
+            
             case .optional:
                 return (self as! EnumMetadata).genericMetadata.first!.typeEncoding
+                
             case .tuple:
                 return .structBegin
+                
             case .foreignClass,
                  .opaque,
                  .function,
@@ -98,6 +132,10 @@ extension Metadata {
                  .errorObject:
                 return .unknown
         }
+    }
+    
+    var typeEncodingString: String {
+        String(Character(.init(self.typeEncoding.rawValue)))
     }
 }
 

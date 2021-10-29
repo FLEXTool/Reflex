@@ -42,10 +42,9 @@ public class SwiftIvar: FLEXIvar {
         self._imagePath = SwiftMirror.imagePath(for: parent.ptr)
     }
     
-    
     public override var name: String { self.property.name }
-    public override var type: FLEXTypeEncoding { .unknown }
-    public override var typeEncoding: String { "?" }
+    public override var type: FLEXTypeEncoding { self.property.type.typeEncoding }
+    public override var typeEncoding: String { self.property.type.typeEncodingString }
     public override var offset: Int { _offset }
     public override var size: UInt { UInt(self.property.type.vwt.size) }
     public override var imagePath: String? { self._imagePath }
