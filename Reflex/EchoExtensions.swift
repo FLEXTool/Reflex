@@ -206,7 +206,16 @@ extension ClassMetadata {
             }
         }
         
+        var value = value
+        let box = container(for: value)
+        
+        // Check if we need to do a cast first; sometimes things like
+        // Double or Int will be boxed up as NSNumber first.
         let type = self.fieldType(for: key)!
+        if type.type != box.type, let cast = try? type.dynamicCast(from: value) {
+            value = cast
+        }
+        
         ptr.storeBytes(of: value, type: type, offset: offset)
     }
     
