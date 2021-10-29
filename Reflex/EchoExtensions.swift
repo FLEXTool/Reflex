@@ -43,8 +43,6 @@ extension KnownMetadata.Builtin {
         ~UInt.self: .unsignedLong,
         ~Float32.self: .float,
         ~Float64.self: .double,
-        ~Float.self: .float,
-        ~Double.self: .double,
     ]
 }
 
@@ -135,7 +133,7 @@ extension Metadata {
     }
     
     var typeEncodingString: String {
-        String(Character(.init(self.typeEncoding.rawValue)))
+        String(Character(.init(UInt8(bitPattern: self.typeEncoding.rawValue))))
     }
 }
 
