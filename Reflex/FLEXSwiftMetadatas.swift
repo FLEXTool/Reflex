@@ -57,32 +57,36 @@ public class SwiftIvar: FLEXIvar {
     public override func getValue(_ target: Any) -> Any? {
         // Target must be AnyObject for KVC to work
         let target = target as AnyObject
-        let type = reflect(target)
+        let type = reflect(target) as! ClassMetadata
         
-        switch type.kind {
-            case .struct:
-                return (type as! StructMetadata).getValue(forKey: self.name, from: target)
-            case .class:
-                return (type as! ClassMetadata).getValue(forKey: self.name, from: target)
-            default:
-                return nil
-        }
+        return type.getValueBox(forKey: self.name, from: target).toAny
     }
     
     public override func setValue(_ value: Any?, on target: Any) {
         // Target must be AnyObject for KVC to work
-        var target = target as AnyObject
-        let type = reflect(target)
-        guard type.kind == .class else { return }
+        let target = target as AnyObject
+        let type = reflect(target) as! ClassMetadata
         
-        switch type.kind {
-            case .struct: // Will never execute, but whatever
-                (type as! StructMetadata).set(value: value, forKey: self.name, on: &target)
-            case .class:
-                (type as! ClassMetadata).set(value: value, forKey: self.name, on: &target)
-            default:
-                return
+        if let value = value {
+            // Not nil, nothing to do here
+            type.set(value: value, forKey: self.name, pointer: target~)
+        } else {
+            // Value was nil; only supported on optional types or class types
+            let kind = self.property.type.kind
+            let nilValue: Any
+            
+            switch kind {
+                case .enum:
+                    nilValue = AnyExistentialContainer(nil: self.property.type as! EnumMetadata)
+                case .class:
+                    nilValue = AnyExistentialContainer(nil: self.property.type as! ClassMetadata)
+                default:
+                    fatalError("Attempting to set nil to non-optional property")
+            }
+            
+            type.set(value: nilValue, forKey: self.name, pointer: target~)
         }
+        
     }
     
     public override func getPotentiallyUnboxedValue(_ target: Any) -> Any? {

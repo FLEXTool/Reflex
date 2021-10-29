@@ -166,6 +166,15 @@ extension StructMetadata {
         return ptr[offset]
     }
     
+    func getValueBox<O>(forKey key: String, from object: O) -> AnyExistentialContainer {
+        guard let offset = self.fieldOffset(for: key), let type = self.fieldType(for: key) else {
+            fatalError("Class '\(self.descriptor.name)' has no member '\(key)'")
+        }
+
+        let ptr = object~
+        return .init(boxing: ptr + offset, type: type)
+    }
+    
     func set<T, O>(value: T, forKey key: String, on object: inout O) {
         self.set(value: value, forKey: key, pointer: object~)
     }
@@ -180,8 +189,51 @@ extension StructMetadata {
 }
 
 extension ClassMetadata {
+    /// Does not traverse the class hierarchy
+    private func objcIvar(for key: String) -> Ivar? {
+        guard let idx = self.descriptor.fields.records.map(\.name)
+                .firstIndex(where: { $0 == key }) else {
+            return nil
+        }
+        
+        var count: UInt32 = 0
+        guard let ivars = class_copyIvarList(self.type as? AnyClass, &count) else {
+            return nil
+        }
+        
+        defer { free(ivars) }
+        return ivars[idx]
+    }
+    
+    /// Does not traverse the class hierarchy
+    func ivarOffset(for key: String) -> Int? {
+        // If the class has objc heritage, get the field offset using the objc
+        // metadata, because Swift won't update the field offsets in the face of
+        // resilient base classes
+        guard self.flags.usesSwiftRefCounting else {
+            guard let ivar = self.objcIvar(for: key) else {
+                return nil
+            }
+            
+            return ivar_getOffset(ivar)
+        }
+        
+        // Does this ivar exist?
+        guard let idx = self.recordIndex(forKey: key) else {
+            // Not here, but maybe in a superclass
+            return nil
+        }
+        
+        // Yes! Now, grab the offset and offset it by the superclass's instance size
+        if let supercls = self.superclassMetadata?.type {
+            return self.fieldOffsets[idx] + class_getInstanceSize(supercls as? AnyClass)
+        }
+        
+        return self.fieldOffsets[idx]
+    }
+    
     func getValue<T, O>(forKey key: String, from object: O) -> T {
-        guard let offset = self.fieldOffset(for: key) else {
+        guard let offset = self.ivarOffset(for: key) else {
             if let sup = self.superclassMetadata {
                 return sup.getValue(forKey: key, from: object)
             } else {
@@ -193,12 +245,25 @@ extension ClassMetadata {
         return ptr[offset]
     }
     
+    func getValueBox<O>(forKey key: String, from object: O) -> AnyExistentialContainer {
+        guard let offset = self.ivarOffset(for: key), let type = self.fieldType(for: key) else {
+            if let sup = self.superclassMetadata {
+                return sup.getValue(forKey: key, from: object)
+            } else {
+                fatalError("Class '\(self.descriptor.name)' has no member '\(key)'")
+            }
+        }
+
+        let ptr = object~
+        return .init(boxing: ptr + offset, type: type)
+    }
+    
     func set<T, O>(value: T, forKey key: String, on object: inout O) {
         self.set(value: value, forKey: key, pointer: object~)
     }
     
     func set(value: Any, forKey key: String, pointer ptr: RawPointer) {
-        guard let offset = self.fieldOffset(for: key) else {
+        guard let offset = self.ivarOffset(for: key) else {
             if let sup = self.superclassMetadata {
                 return sup.set(value: value, forKey: key, pointer: ptr)
             } else {
