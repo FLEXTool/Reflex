@@ -268,17 +268,20 @@ extension AnyExistentialContainer {
     
     init(nil optionalType: EnumMetadata) {
         self = .init(metadata: optionalType)
-        
-        // Zero memory
-        let size = optionalType.vwt.size
-        self.getValueBuffer().initializeMemory(
-            as: Int8.self, repeating: 0, count: size
-        )
+        self.zeroMemory()
     }
     
-    mutating func store(value newValuePtr: RawPointer) {
+    init(nil optionalType: ClassMetadata) {
+        self = .init(metadata: optionalType)
+        self.zeroMemory()
+    }
+    
+    mutating func store(value newValuePtr: RawPointer?) {
+        guard let newValuePtr = newValuePtr else {
+            return self.zeroMemory()
+        }
+        
         self.metadata.vwt.initializeWithCopy(self.getValueBuffer(), newValuePtr)
-//        self.getValueBuffer().copyMemory(from: newValuePtr, type: self.metadata)
     }
     
     /// Calls into `projectValue()` but will allocate a box
@@ -291,6 +294,13 @@ extension AnyExistentialContainer {
         
         // We don't need a box or already have one
         return self.projectValue()~
+    }
+    
+    mutating func zeroMemory() {
+        let size = self.metadata.vwt.size
+        self.getValueBuffer().initializeMemory(
+            as: Int8.self, repeating: 0, count: size
+        )
     }
 }
 
