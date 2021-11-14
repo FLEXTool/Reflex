@@ -14,6 +14,17 @@ import FLEX
 typealias RawType = UnsafeRawPointer
 typealias Field = (name: String, type: Metadata)
 
+enum ReflexError: Error {
+    case failedDynamicCast(src: Any.Type, dest: Any.Type)
+    
+    var description: String {
+        switch self {
+            case .failedDynamicCast(let src, let dest):
+                return "Dynamic cast from type '\(src)' to '\(dest)' failed"
+        }
+    }
+}
+
 /// For some reason, breaking it all out into separate vars like this
 /// eliminated a bug where the pointers in the final set were not the
 /// same pointers that would appear if you manually reflected a type
@@ -102,7 +113,8 @@ extension Metadata {
     func dynamicCast(from variable: Any) throws -> Any {
         func cast<T>(_: T.Type) throws -> T {
             guard let casted = variable as? T else {
-                fatalError("Failed dynamic cast")
+                let srcType = Swift.type(of: variable)
+                throw ReflexError.failedDynamicCast(src: srcType, dest: T.self)
             }
             
             return casted
