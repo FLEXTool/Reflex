@@ -87,7 +87,8 @@ class RFSlider: RFView, Slidable {
     var step = 0.1
     @objc var smooth = false
     
-    var memo = ""
+    var title = ""
+    var subtitle: String? = nil
     var tag = 0
     
     func zero() {
