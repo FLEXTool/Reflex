@@ -96,12 +96,16 @@ extension KnownMetadata {
 }
 
 extension Metadata {
+    private var `enum`: EnumMetadata { self as! EnumMetadata }
+    private var `struct`: StructMetadata { self as! StructMetadata }
+    
     /// This doesn't actually work very well since Double etc aren't opaque,
     /// but instead contain a single member that is itself opaque
     private var isBuiltin_alt: Bool {
         return self is OpaqueMetadata
     }
     
+    /// This is `true` for any "primitive" type
     var isBuiltin: Bool {
         guard self.vwt.flags.isPOD else {
             return false
@@ -110,6 +114,21 @@ extension Metadata {
         return KnownMetadata.Builtin.supported.contains(self.ptr)
     }
     
+    /// Whether this type represents a struct (or optional) besides
+    /// a primitive that is bridged to Objective-C as an object 
+    var isNonTriviallyBridgedToObjc: Bool {
+        switch self.kind {
+            case .struct:
+                return KnownMetadata.isFoundationStruct(self.struct)
+            case .optional:
+                return self.enum.optionalType.isNonTriviallyBridgedToObjc
+                
+            default:
+                return false
+        }
+    }
+    
+    /// Programmatically perform a cast like `foo as? T` at runtime
     func dynamicCast(from variable: Any) throws -> Any {
         func cast<T>(_: T.Type) throws -> T {
             guard let casted = variable as? T else {
@@ -133,7 +152,8 @@ extension Metadata {
                 if self.isBuiltin {
                     return KnownMetadata.Builtin.typeEncodings[~self.type]!
                 }
-                if KnownMetadata.isFoundationStruct((self as! StructMetadata)) {
+                // If it bridges to Objc and _isn't_ a primitive, treat it as an object
+                if self.isNonTriviallyBridgedToObjc {
                     // TODO encode as proper type
                     return .objcObject
                 }
@@ -141,13 +161,14 @@ extension Metadata {
                 return .structBegin
                 
             case .enum:
-                if (self as! EnumMetadata).descriptor.numPayloadCases > 0 {
+                if self.enum.descriptor.numPayloadCases > 0 {
                     return .unknown
                 }
                 return .unknown // TODO: return proper sized int for enums?
             
             case .optional:
-                return (self as! EnumMetadata).genericMetadata.first!.typeEncoding
+                // For optionals, use the encoding of the Wrapped type
+                return self.enum.optionalType!.typeEncoding
                 
             case .tuple:
                 return .structBegin
@@ -166,15 +187,13 @@ extension Metadata {
         }
     }
     
+    // TODO: enums would show up as anonymous structs I think
     var typeEncodingString: String {
-        let encoding = self.typeEncoding
-        if encoding == .objcObject {
-            return FLEXTypeEncoding.encode(class: self.type)
-//            if self.kind == .struct {
-//                let cls = KnownMetadata.classForStruct(self)
-//            }
+        if self.typeEncoding == .objcObject {
+            return FLEXTypeEncoding.encodeObjcObject(typeName: self.description)
         }
         
+        // For now, convert type encoding char into a string
         return String(Character(.init(UInt8(bitPattern: self.typeEncoding.rawValue))))
     }
 }
@@ -296,9 +315,9 @@ extension ClassMetadata {
         }
         
         // Yes! Now, grab the offset and offset it by the superclass's instance size
-        if let supercls = self.superclassMetadata?.type {
-            return self.fieldOffsets[idx] + class_getInstanceSize(supercls as? AnyClass)
-        }
+//        if let supercls = self.superclassMetadata?.type {
+//            return self.fieldOffsets[idx] //+ class_getInstanceSize(supercls as? AnyClass)
+//        }
         
         return self.fieldOffsets[idx]
     }
@@ -448,6 +467,8 @@ extension FieldRecord: CustomDebugStringConvertible {
 }
 
 extension EnumMetadata {
+    fileprivate var optionalType: Metadata! { self.genericMetadata.first }
+    
     func getTag(for instance: Any) -> UInt32 {
         var box = container(for: instance)
         return self.enumVwt.getEnumTag(for: box.projectValue())
@@ -510,7 +531,7 @@ extension Metadata {
             case .class, .struct, .enum:
                 return "\((self as! NominalType).genericDescription)"
             case .optional:
-                return "\((self as! EnumMetadata).genericMetadata.first!.description)?"
+                return "\(self.enum.optionalType!.description)?"
             case .foreignClass:
                 return "~ForeignClass"
             case .opaque:

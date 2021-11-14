@@ -9,7 +9,7 @@
 import FLEX
 
 extension FLEXTypeEncoding {
-    static func encode(`class` cls: Any.Type) -> String {
-        return "@\"\(cls)\""
+    static func encodeObjcObject(typeName: String) -> String {
+        return "@\"\(typeName)\""
     }
 }
