@@ -73,7 +73,7 @@ public class SwiftMirror: NSObject, FLEXMirrorProtocol {
         self.protocols = swiftProtos + fm.protocols
         
         self.properties = fm.properties
-        self.classProperties = fm.properties
+        self.classProperties = fm.classProperties
         self.methods = fm.methods
         self.classMethods = fm.classMethods
     }
