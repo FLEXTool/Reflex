@@ -11,7 +11,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Azoy/Echo", .branch("main")),
-        .package(url: "https://github.com/FLEXTool/FLEX", .branch("master")),
+        .package(url: "https://github.com/FLEXTool/FLEX", .branch("wip/reflex")),
     ],
     targets: [
         .target(
