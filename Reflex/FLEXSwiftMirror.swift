@@ -59,7 +59,7 @@ public class SwiftMirror: NSObject, FLEXMirrorProtocol {
     }
     
     private func examine() {
-        let swiftIvars: [SwiftIvar] = self.metadata.fields.map {
+        let swiftIvars: [SwiftIvar] = self.metadata.shallowFields.map {
             .init(field: $0, class: self.metadata)
         }
         
