@@ -12,4 +12,12 @@ extension FLEXTypeEncoding {
     static func encodeObjcObject(typeName: String) -> String {
         return "@\"\(typeName)\""
     }
+    
+    static func encodeStruct(typeName: String? = nil, fields: [String]) -> String {
+        if let typeName = typeName {
+            return "{\(typeName)=\(fields.joined())}"
+        }
+        
+        return "{\(fields.joined())}"
+    }
 }

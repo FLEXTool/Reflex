@@ -34,7 +34,7 @@ extension KnownMetadata.Builtin {
     private static var _types: [Any.Type] = [
         Int8.self, Int16.self, Int32.self, Int64.self, Int.self,
         UInt8.self, UInt16.self, UInt32.self, UInt64.self, UInt.self,
-        Float32.self, Float64.self, Float.self, Double.self
+        Float32.self, Float64.self, Float.self, Double.self, CGFloat.self,
     ]
     
     private static var _typePtrs: [RawType] {
@@ -54,6 +54,7 @@ extension KnownMetadata.Builtin {
         ~UInt.self: .unsignedLongLong,
         ~Float32.self: .float,
         ~Float64.self: .double,
+        ~CGFloat.self: .double,
     ]
 }
 
@@ -189,12 +190,16 @@ extension Metadata {
     
     // TODO: enums would show up as anonymous structs I think
     var typeEncodingString: String {
-        if self.typeEncoding == .objcObject {
-            return FLEXTypeEncoding.encodeObjcObject(typeName: self.description)
+        switch self.typeEncoding {
+            case .objcObject:
+                return FLEXTypeEncoding.encodeObjcObject(typeName: self.description)
+            case .structBegin:
+                let fieldTypes = self.struct.fields.map(\.type.typeEncodingString)
+                return FLEXTypeEncoding.encodeStruct(typeName: self.description, fields: fieldTypes)
+            default:
+                // For now, convert type encoding char into a string
+                return String(Character(.init(UInt8(bitPattern: self.typeEncoding.rawValue))))
         }
-        
-        // For now, convert type encoding char into a string
-        return String(Character(.init(UInt8(bitPattern: self.typeEncoding.rawValue))))
     }
 }
 
