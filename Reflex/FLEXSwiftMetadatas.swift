@@ -54,6 +54,10 @@ public class SwiftIvar: FLEXIvar {
     }
     
     public override func description() -> String! {
+        if self.type == .structBegin, let structMetadata = self.property.type as? StructMetadata {
+            return "\(structMetadata.description) \(self.name)"
+        }
+        
         let desc = super.description()
         // Make things like `String *foo` appear as `String foo`
         if self.property.type.isNonTriviallyBridgedToObjc {
