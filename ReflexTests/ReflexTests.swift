@@ -125,12 +125,14 @@ class ReflexTests: XCTestCase {
     
     func testSwiftMirror() {
         let slider = RFSlider(color: .red, frame: .zero)
-        let mirror = SwiftMirror(reflecting: slider)
+        let sliderMirror = SwiftMirror(reflecting: slider)
+        let bob = Employee(name: "Bob", age: 45, position: "Programmer", salary: 100_000)
+        let employeeMirror = SwiftMirror(reflecting: bob)
         
-        XCTAssertEqual(mirror.ivars.count, 8)
-        XCTAssertEqual(mirror.properties.count, 1)
-        XCTAssertEqual(mirror.methods.count, 6)
-        XCTAssertEqual(mirror.protocols.count, 1)
+        XCTAssertEqual(sliderMirror.ivars.count, 8)
+        XCTAssertEqual(sliderMirror.properties.count, 1)
+        XCTAssertEqual(sliderMirror.methods.count, 6)
+        XCTAssertEqual(sliderMirror.protocols.count, 1)
         
         slider.tag = 0xAABB
         
@@ -141,9 +143,10 @@ class ReflexTests: XCTestCase {
         XCTAssertEqual(smtag, slider.tag)
         
         // Echo //
-        let tagp = mirror.ivars.filter { $0.name == "tag" }.first!
-        let titlep = mirror.ivars.filter { $0.name == "title" }.first!
-        let subtitlep = mirror.ivars.filter { $0.name == "subtitle" }.first!
+        let tagp = sliderMirror.ivars.filter { $0.name == "tag" }.first!
+        let titlep = sliderMirror.ivars.filter { $0.name == "title" }.first!
+        let subtitlep = sliderMirror.ivars.filter { $0.name == "subtitle" }.first!
+        let sizep = employeeMirror.ivars.filter { $0.name == "cubicleSize" }.first!
         
         // Read
         let tag: Int = tagp.getValue(slider) as! Int
@@ -160,5 +163,6 @@ class ReflexTests: XCTestCase {
         XCTAssertEqual(tagp.description, "NSInteger tag")
         XCTAssertEqual(titlep.description, "String title")
         XCTAssertEqual(subtitlep.description, "String? subtitle")
+        XCTAssertEqual(sizep.description, "Size cubicleSize")
     }
 }
