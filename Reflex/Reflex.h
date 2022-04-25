@@ -6,4 +6,4 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <FLEX.h>
+@import FLEX;
