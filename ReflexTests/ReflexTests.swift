@@ -119,6 +119,14 @@ class ReflexTests: XCTestCase {
         
     }
     
+    func testTypeEncodings() {
+        let rect = reflect(CGRect.self)
+        XCTAssertEqual(rect.typeEncodingString, "{CGRect={CGPoint=dd}{CGSize=dd}}")
+        
+        let size = reflect(Size.self)
+        XCTAssertEqual(size.typeEncodingString, "{Size=qq}")
+    }
+    
     func testSwiftMirrorAvailable() {
         XCTAssertNotNil(NSClassFromString("FLEXSwiftMirror"))
     }
