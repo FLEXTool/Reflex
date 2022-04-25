@@ -24,9 +24,6 @@ extension SwiftMirror {
 
 @objc(FLEXSwiftIvar)
 public class SwiftIvar: FLEXIvar {
-    private let property: Field
-    private let _offset: Int
-    private let _imagePath: String?
     
     convenience init(field: Field, class: ClassMetadata) {
         self.init(
@@ -43,11 +40,18 @@ public class SwiftIvar: FLEXIvar {
     }
     
     public override var name: String { self.property.name }
-    public override var type: FLEXTypeEncoding { self.property.type.typeEncoding }
-    public override var typeEncoding: String { self.property.type.typeEncodingString }
+    public override var type: FLEXTypeEncoding { _typeChar }
+    public override var typeEncoding: String { _typeEncodingString }
     public override var offset: Int { _offset }
     public override var size: UInt { UInt(self.property.type.vwt.size) }
     public override var imagePath: String? { self._imagePath }
+    
+    private let property: Field
+    private let _offset: Int
+    private let _imagePath: String?
+    
+    private lazy var _typeChar = self.property.type.typeEncoding
+    private lazy var _typeEncodingString = self.property.type.typeEncodingString
     
     public override var details: String {
         "\(size) bytes, \(offset), \(typeEncoding)"
