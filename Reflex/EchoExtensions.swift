@@ -431,11 +431,7 @@ extension AnyExistentialContainer {
         self.zeroMemory()
     }
     
-    mutating func store(value newValuePtr: RawPointer?) {
-        guard let newValuePtr = newValuePtr else {
-            return self.zeroMemory()
-        }
-        
+    mutating func store(value newValuePtr: RawPointer) {
         self.metadata.vwt.initializeWithCopy(self.getValueBuffer(), newValuePtr)
     }
     
