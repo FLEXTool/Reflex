@@ -352,7 +352,7 @@ extension ClassMetadata {
     func getValueBox<O>(forKey key: String, from object: O) -> AnyExistentialContainer {
         guard let offset = self.ivarOffset(for: key), let type = self.fieldType(for: key) else {
             if let sup = self.superclassMetadata {
-                return sup.getValue(forKey: key, from: object)
+                return sup.getValueBox(forKey: key, from: object)
             } else {
                 fatalError("Class '\(self.descriptor.name)' has no member '\(key)'")
             }
