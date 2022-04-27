@@ -51,8 +51,8 @@ public class SwiftMirror: NSObject, FLEXMirrorProtocol {
         self.isClass = class_isMetaClass(cls)
         self.className = NSStringFromClass(cls)
         
-        self.metadata = reflectClass(self.value)!
         self.class = self.isClass ? objectOrClass as! AnyClass : cls
+        self.metadata = reflectClass(self.class)!
         
         super.init()
         self.examine()
