@@ -679,7 +679,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/FLEXTool/FLEX.git";
 			requirement = {
-				branch = feature/reflex;
+				branch = master;
 				kind = branch;
 			};
 		};
