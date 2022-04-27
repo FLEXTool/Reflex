@@ -99,6 +99,7 @@ extension KnownMetadata {
 extension Metadata {
     private var `enum`: EnumMetadata { self as! EnumMetadata }
     private var `struct`: StructMetadata { self as! StructMetadata }
+    private var tuple: TupleMetadata { self as! TupleMetadata }
     
     /// This doesn't actually work very well since Double etc aren't opaque,
     /// but instead contain a single member that is itself opaque
@@ -194,8 +195,16 @@ extension Metadata {
             case .objcObject:
                 return FLEXTypeEncoding.encodeObjcObject(typeName: self.description)
             case .structBegin:
-                let fieldTypes = self.struct.fields.map(\.type.typeEncodingString)
-                return FLEXTypeEncoding.encodeStruct(typeName: self.description, fields: fieldTypes)
+                switch self.kind {
+                    case .tuple:
+                        let fieldTypes = self.tuple.elements.map(\.metadata.typeEncodingString)
+                        return FLEXTypeEncoding.encodeStruct(typeName: self.description, fields: fieldTypes)
+                    case .struct:
+                        let fieldTypes = self.struct.fields.map(\.type.typeEncodingString)
+                        return FLEXTypeEncoding.encodeStruct(typeName: self.description, fields: fieldTypes)
+                    default:
+                        fatalError()
+                }
             default:
                 // For now, convert type encoding char into a string
                 return String(Character(.init(UInt8(bitPattern: self.typeEncoding.rawValue))))
