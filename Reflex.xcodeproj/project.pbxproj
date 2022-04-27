@@ -17,8 +17,15 @@
 		C34879EA2725118000815379 /* PointerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879E82725118000815379 /* PointerExtensions.swift */; };
 		C34879FA2725FE6600815379 /* FLEXSwiftMetadatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879F92725FE6600815379 /* FLEXSwiftMetadatas.swift */; };
 		C3570319272BD341002DCB53 /* FLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3570318272BD341002DCB53 /* FLExtensions.swift */; };
+		C357BA242819C4B500FFFC96 /* FLEX in Frameworks */ = {isa = PBXBuildFile; productRef = C357BA232819C4B500FFFC96 /* FLEX */; };
+		C38D97632819241A008709D0 /* Echo in Frameworks */ = {isa = PBXBuildFile; productRef = C38D97622819241A008709D0 /* Echo */; };
+		C38D976428192424008709D0 /* libflex.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FBA5472741ACE700FBD76E /* libflex.tbd */; };
+		C38D976B2819246E008709D0 /* FLEXSwiftMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3442AC12624D83700693972 /* FLEXSwiftMirror.swift */; };
+		C38D976C2819246E008709D0 /* FLEXSwiftMetadatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879F92725FE6600815379 /* FLEXSwiftMetadatas.swift */; };
+		C38D976D2819246E008709D0 /* EchoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879E72725118000815379 /* EchoExtensions.swift */; };
+		C38D976E2819246E008709D0 /* PointerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879E82725118000815379 /* PointerExtensions.swift */; };
+		C38D976F2819246F008709D0 /* FLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3570318272BD341002DCB53 /* FLExtensions.swift */; };
 		C3EA55C826279A7E007611C8 /* ReflexObjcTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3EA55C726279A7E007611C8 /* ReflexObjcTests.mm */; };
-		C3FBA5482741ACE700FBD76E /* libflex.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FBA5472741ACE700FBD76E /* libflex.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +51,7 @@
 		C34879E82725118000815379 /* PointerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerExtensions.swift; sourceTree = "<group>"; };
 		C34879F92725FE6600815379 /* FLEXSwiftMetadatas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLEXSwiftMetadatas.swift; sourceTree = "<group>"; };
 		C3570318272BD341002DCB53 /* FLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLExtensions.swift; sourceTree = "<group>"; };
+		C38D975528192415008709D0 /* libreflex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libreflex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3EA55C526279A7E007611C8 /* ReflexTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReflexTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3EA55C626279A7E007611C8 /* ReflexObjcTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReflexObjcTests.h; sourceTree = "<group>"; };
 		C3EA55C726279A7E007611C8 /* ReflexObjcTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ReflexObjcTests.mm; sourceTree = "<group>"; };
@@ -56,7 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3442ADB2624DBB500693972 /* Echo in Frameworks */,
-				C3FBA5482741ACE700FBD76E /* libflex.tbd in Frameworks */,
+				C357BA242819C4B500FFFC96 /* FLEX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +73,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C30D29862620020B00D89649 /* Reflex.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C38D975328192415008709D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C38D97632819241A008709D0 /* Echo in Frameworks */,
+				C38D976428192424008709D0 /* libflex.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +95,7 @@
 				C30D297E2620020B00D89649 /* Reflex */,
 				C30D29892620020B00D89649 /* ReflexTests */,
 				C30D297D2620020B00D89649 /* Products */,
+				C38D97612819241A008709D0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +104,7 @@
 			children = (
 				C30D297C2620020B00D89649 /* Reflex.framework */,
 				C30D29852620020B00D89649 /* ReflexTests.xctest */,
+				C38D975528192415008709D0 /* libreflex.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,6 +136,13 @@
 			path = ReflexTests;
 			sourceTree = "<group>";
 		};
+		C38D97612819241A008709D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -125,6 +151,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C30D298D2620020B00D89649 /* Reflex.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C38D975128192415008709D0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +180,7 @@
 			name = Reflex;
 			packageProductDependencies = (
 				C3442ADA2624DBB500693972 /* Echo */,
+				C357BA232819C4B500FFFC96 /* FLEX */,
 			);
 			productName = Reflex;
 			productReference = C30D297C2620020B00D89649 /* Reflex.framework */;
@@ -172,6 +206,26 @@
 			productReference = C30D29852620020B00D89649 /* ReflexTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C38D975428192415008709D0 /* libreflex */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C38D975D28192415008709D0 /* Build configuration list for PBXNativeTarget "libreflex" */;
+			buildPhases = (
+				C38D975128192415008709D0 /* Headers */,
+				C38D975228192415008709D0 /* Sources */,
+				C38D975328192415008709D0 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libreflex;
+			packageProductDependencies = (
+				C38D97622819241A008709D0 /* Echo */,
+			);
+			productName = libreflex;
+			productReference = C38D975528192415008709D0 /* libreflex.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -191,6 +245,9 @@
 						CreatedOnToolsVersion = 12.4;
 						LastSwiftMigration = 1240;
 					};
+					C38D975428192415008709D0 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 				};
 			};
 			buildConfigurationList = C30D29762620020B00D89649 /* Build configuration list for PBXProject "Reflex" */;
@@ -204,6 +261,7 @@
 			mainGroup = C30D29722620020B00D89649;
 			packageReferences = (
 				C3442AD92624DBB500693972 /* XCRemoteSwiftPackageReference "Echo" */,
+				C357BA222819C4B400FFFC96 /* XCRemoteSwiftPackageReference "FLEX" */,
 			);
 			productRefGroup = C30D297D2620020B00D89649 /* Products */;
 			projectDirPath = "";
@@ -211,6 +269,7 @@
 			targets = (
 				C30D297B2620020B00D89649 /* Reflex */,
 				C30D29842620020B00D89649 /* ReflexTests */,
+				C38D975428192415008709D0 /* libreflex */,
 			);
 		};
 /* End PBXProject section */
@@ -252,6 +311,18 @@
 				C34879E02724F34100815379 /* ReflexTests.swift in Sources */,
 				C3EA55C826279A7E007611C8 /* ReflexObjcTests.mm in Sources */,
 				C3442AB02624D62800693972 /* SampleTypes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C38D975228192415008709D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C38D976B2819246E008709D0 /* FLEXSwiftMirror.swift in Sources */,
+				C38D976C2819246E008709D0 /* FLEXSwiftMetadatas.swift in Sources */,
+				C38D976D2819246E008709D0 /* EchoExtensions.swift in Sources */,
+				C38D976E2819246E008709D0 /* PointerExtensions.swift in Sources */,
+				C38D976F2819246F008709D0 /* FLExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +575,56 @@
 			};
 			name = Release;
 		};
+		C38D975B28192415008709D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S6N2F22V2Z;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = /opt/theos/vendor/include/libflex;
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_NAME = reflex;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_SWIFT_SYMBOLS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C38D975C28192415008709D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S6N2F22V2Z;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = /opt/theos/vendor/include/libflex;
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_NAME = reflex;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_SWIFT_SYMBOLS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -534,6 +655,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		C38D975D28192415008709D0 /* Build configuration list for PBXNativeTarget "libreflex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C38D975B28192415008709D0 /* Debug */,
+				C38D975C28192415008709D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -545,10 +675,28 @@
 				kind = branch;
 			};
 		};
+		C357BA222819C4B400FFFC96 /* XCRemoteSwiftPackageReference "FLEX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FLEXTool/FLEX.git";
+			requirement = {
+				branch = feature/reflex;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		C3442ADA2624DBB500693972 /* Echo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3442AD92624DBB500693972 /* XCRemoteSwiftPackageReference "Echo" */;
+			productName = Echo;
+		};
+		C357BA232819C4B500FFFC96 /* FLEX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C357BA222819C4B400FFFC96 /* XCRemoteSwiftPackageReference "FLEX" */;
+			productName = FLEX;
+		};
+		C38D97622819241A008709D0 /* Echo */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C3442AD92624DBB500693972 /* XCRemoteSwiftPackageReference "Echo" */;
 			productName = Echo;
