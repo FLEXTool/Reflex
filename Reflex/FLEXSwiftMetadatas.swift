@@ -109,6 +109,42 @@ public class SwiftIvar: FLEXIvar {
     public override func getPotentiallyUnboxedValue(_ target: Any) -> Any? {
         return self.getValue(target)
     }
+    
+    public override func auxiliaryInfo(forKey key: String) -> Any? {
+        switch key {
+            case FLEXAuxiliarynfoKeyFieldLabels:
+                return self.structFieldNamesDict(from: self.property.type.struct)
+            default:
+                return nil
+        }
+    }
+    
+    private func structFieldNamesDict(from metadata: StructMetadata?) -> [String: [String]] {
+        guard let metadata = metadata else { return [:] }
+        
+        func typeAndLabels(from metadata: StructMetadata) -> (String, [String]) {
+            let key = metadata.typeEncodingString
+            let labels = metadata.fields.map { "\($0.type.description) \($0.name)" }
+            return (key, labels)
+        }
+        
+        let topLevel = typeAndLabels(from: metadata)
+        var mapping = [topLevel.0: topLevel.1]
+        
+        let childTypes = metadata.fields
+            .compactMap { $0.type.struct }
+            .map { typeAndLabels(from: $0) }
+        
+        for (key, labels) in childTypes {
+            mapping[key] = labels
+        }
+        
+        return mapping
+    }
+}
+
+fileprivate extension Metadata {
+    var `struct`: StructMetadata? { self as? StructMetadata }
 }
 
 @objc(FLEXSwiftProtocol)
