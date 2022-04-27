@@ -202,6 +202,8 @@ extension Metadata {
                     case .struct:
                         let fieldTypes = self.struct.fields.map(\.type.typeEncodingString)
                         return FLEXTypeEncoding.encodeStruct(typeName: self.description, fields: fieldTypes)
+                    case .optional:
+                        return self.enum.optionalType!.typeEncodingString
                     default:
                         fatalError()
                 }
