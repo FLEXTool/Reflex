@@ -12,11 +12,12 @@ uuids:
     value:           3A1A31E1-6D03-33C4-A0C1-A230DB9078D4
 flags:           [ not_app_extension_safe ]
 install-name:    '/Library/MobileSubstrate/DynamicLibraries/libFLEX.dylib'
-current-version: 0
-compatibility-version: 0
+current-version:       1
+compatibility-version: 1
 exports:
-  - targets:         [ armv7-ios, armv7s-ios, arm64-ios, arm64e-ios ]
-    symbols:              [ _FLEXConstructorsShouldRun, _FLEXGetAllIvars,
+  - targets:              [ armv7-ios, armv7s-ios, arm64-ios, arm64e-ios ]
+    symbols:              [ _FLEXAuxiliarynfoKeyFieldLabels,
+                            _FLEXConstructorsShouldRun, _FLEXGetAllIvars,
                             _FLEXGetAllMethods, _FLEXGetAllProperties,
                             _FLEXGetAllSubclasses, _FLEXGetClassHierarchy,
                             _FLEXGetConformedProtocols, _FLEXGetSizeAndAlignment,
@@ -41,6 +42,7 @@ exports:
                             _kFLEXDefaultsHideVariablePreviewsKey,
                             _kFLEXDefaultsNetworkHostDenylistKey,
                             _kFLEXDefaultsNetworkObserverEnabledKey,
+                            _kFLEXDefaultsNetworkObserverLastModeKey,
                             _kFLEXDefaultsRegisterJSONExplorerKey,
                             _kFLEXDefaultsShowMethodOverridesKey,
                             _kFLEXDefaultsToolbarTopMarginKey,
@@ -126,9 +128,10 @@ exports:
                             FLEXFileBrowserController,
                             FLEXFileBrowserSearchOperation,
                             FLEXFileBrowserTableViewCell,
-                            FLEXFilteringTableViewController, FLEXGlobalsEntry,
-                            FLEXGlobalsSection, FLEXGlobalsViewController,
-                            FLEXHTTPTransaction,
+                            FLEXFilteringTableViewController,
+                            FLEXFirebaseSetDataInfo, FLEXFirebaseTransaction,
+                            FLEXGlobalsEntry, FLEXGlobalsSection,
+                            FLEXGlobalsViewController, FLEXHTTPTransaction,
                             FLEXHTTPTransactionDetailController,
                             FLEXHeapEnumerator, FLEXHierarchyTableViewCell,
                             FLEXHierarchyTableViewController,
@@ -175,7 +178,8 @@ exports:
                             FLEXSystemLogViewController, FLEXTabList,
                             FLEXTableColumnHeader,
                             FLEXTableContentViewController, FLEXTableLeftCell,
-                            FLEXTableListViewController, FLEXTableView,
+                            FLEXTableListViewController,
+                            FLEXTableRowDataViewController, FLEXTableView,
                             FLEXTableViewCell, FLEXTableViewController,
                             FLEXTableViewSection, FLEXTabsViewController,
                             FLEXTypeEncodingParser, FLEXUIAppShortcuts,
@@ -184,5 +188,6 @@ exports:
                             FLEXViewControllerShortcuts,
                             FLEXViewControllersViewController, FLEXViewShortcuts,
                             FLEXWebViewController, FLEXWebsocketTransaction,
-                            FLEXWindow, FLEXWindowManagerController ]
+                            FLEXWindow, FLEXWindowManagerController, OSCache,
+                            OSCacheEntry, OSCache_Private ]
 ...
