@@ -22,6 +22,16 @@ struct Size: Equatable {
     var height: Int = 0
 }
 
+struct Rect: Equatable {
+    static let zero = Rect(origin: .init(), size: .init())
+    var origin: Point
+    var size: Size
+}
+
+class Sprite {
+    let boundingBox: Rect = .zero
+}
+
 class Person: Equatable {
     var name: String
     var age: Int

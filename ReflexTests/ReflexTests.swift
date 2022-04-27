@@ -127,6 +127,21 @@ class ReflexTests: XCTestCase {
         XCTAssertEqual(size.typeEncodingString, "{Size=qq}")
     }
     
+    func testStructFieldLabels() {
+        let mirror = SwiftMirror(reflecting: Sprite.self)
+        let structIvar = mirror.ivars.first(where: { $0.name == "boundingBox" })!
+        
+        let info = structIvar.auxiliaryInfo(forKey: FLEXAuxiliarynfoKeyFieldLabels)
+        if let labels = info as? [String: [String]] {
+            XCTAssertEqual(labels.count, 3)
+            XCTAssertEqual(labels["{Rect={Point=qq}{Size=qq}}"], ["Point origin", "Size size"])
+            XCTAssertEqual(labels["{Point=qq}"], ["Int x", "Int y"])
+            XCTAssertEqual(labels["{Size=qq}"], ["Int width", "Int height"])
+        } else {
+            XCTFail()
+        }
+    }
+    
     func testSwiftMirrorAvailable() {
         XCTAssertNotNil(NSClassFromString("FLEXSwiftMirror"))
     }
