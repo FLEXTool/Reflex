@@ -18,7 +18,6 @@
 		C34879FA2725FE6600815379 /* FLEXSwiftMetadatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34879F92725FE6600815379 /* FLEXSwiftMetadatas.swift */; };
 		C3570319272BD341002DCB53 /* FLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3570318272BD341002DCB53 /* FLExtensions.swift */; };
 		C3EA55C826279A7E007611C8 /* ReflexObjcTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3EA55C726279A7E007611C8 /* ReflexObjcTests.mm */; };
-		C3F9B2BE2816234A002FE4B5 /* FLEX in Frameworks */ = {isa = PBXBuildFile; productRef = C3F9B2BD2816234A002FE4B5 /* FLEX */; };
 		C3FBA5482741ACE700FBD76E /* libflex.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FBA5472741ACE700FBD76E /* libflex.tbd */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +57,6 @@
 			files = (
 				C3442ADB2624DBB500693972 /* Echo in Frameworks */,
 				C3FBA5482741ACE700FBD76E /* libflex.tbd in Frameworks */,
-				C3F9B2BE2816234A002FE4B5 /* FLEX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +147,6 @@
 			name = Reflex;
 			packageProductDependencies = (
 				C3442ADA2624DBB500693972 /* Echo */,
-				C3F9B2BD2816234A002FE4B5 /* FLEX */,
 			);
 			productName = Reflex;
 			productReference = C30D297C2620020B00D89649 /* Reflex.framework */;
@@ -207,7 +204,6 @@
 			mainGroup = C30D29722620020B00D89649;
 			packageReferences = (
 				C3442AD92624DBB500693972 /* XCRemoteSwiftPackageReference "Echo" */,
-				C3F9B2BC2816234A002FE4B5 /* XCRemoteSwiftPackageReference "FLEX" */,
 			);
 			productRefGroup = C30D297D2620020B00D89649 /* Products */;
 			projectDirPath = "";
@@ -402,7 +398,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				HEADER_SEARCH_PATHS = ../FLEX/Classes/Headers;
+				HEADER_SEARCH_PATHS = (
+					/opt/theos/vendor/include,
+					/opt/theos/vendor/include/libflex,
+				);
 				INFOPLIST_FILE = Reflex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -435,7 +434,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				HEADER_SEARCH_PATHS = ../FLEX/Classes/Headers;
+				HEADER_SEARCH_PATHS = (
+					/opt/theos/vendor/include,
+					/opt/theos/vendor/include/libflex,
+				);
 				INFOPLIST_FILE = Reflex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -543,14 +545,6 @@
 				kind = branch;
 			};
 		};
-		C3F9B2BC2816234A002FE4B5 /* XCRemoteSwiftPackageReference "FLEX" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/FLEXTool/FLEX.git";
-			requirement = {
-				branch = feature/reflex;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -558,11 +552,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C3442AD92624DBB500693972 /* XCRemoteSwiftPackageReference "Echo" */;
 			productName = Echo;
-		};
-		C3F9B2BD2816234A002FE4B5 /* FLEX */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C3F9B2BC2816234A002FE4B5 /* XCRemoteSwiftPackageReference "FLEX" */;
-			productName = FLEX;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
