@@ -162,7 +162,10 @@ public class SwiftProtocol: FLEXProtocol {
     }
     
     public override var objc_protocol: Protocol {
-        return ~self.protocol
+        // Swift protocol requirements have no names (to my knowledge)
+        // and a Swift protocol is not an objc object, so returning
+        // this protocol is the best we can do, and has no drawbacks
+        return NSObjectProtocol.self
     }
     
     private lazy var _imagePath: String? = {
