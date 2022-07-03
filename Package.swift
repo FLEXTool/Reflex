@@ -10,7 +10,7 @@ let package = Package(
         .library(name: "Reflex", targets: ["Reflex"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Azoy/Echo", .branch("main")),
+        .package(url: "https://github.com/NSExceptional/Echo", .branch("main")),
         .package(url: "https://github.com/FLEXTool/FLEX", .branch("master")),
     ],
     targets: [
