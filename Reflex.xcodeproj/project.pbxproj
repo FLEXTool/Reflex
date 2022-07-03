@@ -679,7 +679,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/NSExceptional/Echo";
 			requirement = {
-				branch = "patch-1";
+				branch = main;
 				kind = branch;
 			};
 		};
