@@ -6,7 +6,6 @@ Pod::Spec.new do |spec|
 
   spec.author           = { 'Tanner Bennett' => 'tannerbennett@me.com' }
   spec.homepage         = 'https://github.com/FLEXTool/Reflex'
-  spec.social_media_url = 'https://twitter.com/NSExceptional'
   spec.source           = { :git => 'https://github.com/FLEXTool/Reflex.git', :tag => '#{spec.version}' }
   
   spec.dependency       'FLEX', '~> 4.6.0'
