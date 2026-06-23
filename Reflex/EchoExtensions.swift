@@ -179,6 +179,7 @@ extension Metadata {
                  .opaque,
                  .function,
                  .existential,
+                 .extendedExistential,
                  .metatype,
                  .objcClassWrapper,
                  .existentialMetatype,
@@ -223,23 +224,26 @@ protocol NominalType: TypeMetadata {
 
 protocol ContextualNominalType: NominalType {
     associatedtype NominalTypeDescriptor: TypeContextDescriptor
-    var descriptor: NominalTypeDescriptor { get }
+    /// Echo's `ClassMetadata.descriptor` is now optional (some classes have
+    /// none), so we expose a non-optional accessor here; the class witness
+    /// unwraps it — Reflex only ever inspects Swift types that have one.
+    var typeDescriptor: NominalTypeDescriptor { get }
 }
 
 extension ClassMetadata: NominalType, ContextualNominalType {
-    typealias NominalTypeDescriptor = ClassDescriptor
+    var typeDescriptor: ClassDescriptor { self.descriptor! }
 }
 extension StructMetadata: NominalType, ContextualNominalType {    
-    typealias NominalTypeDescriptor = StructDescriptor
+    var typeDescriptor: StructDescriptor { self.descriptor }
 }
 extension EnumMetadata: NominalType, ContextualNominalType {
-    typealias NominalTypeDescriptor = EnumDescriptor
+    var typeDescriptor: EnumDescriptor { self.descriptor }
 }
 
 // MARK: KVC
 extension ContextualNominalType {
     func recordIndex(forKey key: String) -> Int? {
-        return self.descriptor.fields.records.firstIndex { $0.name == key }
+        return self.typeDescriptor.fields.records.firstIndex { $0.name == key }
     }
     
     func fieldOffset(for key: String) -> Int? {
@@ -255,7 +259,7 @@ extension ContextualNominalType {
     }
     
     var shallowFields: [Field] {
-        let r: [FieldRecord] = self.descriptor.fields.records
+        let r: [FieldRecord] = self.typeDescriptor.fields.records
         return r.filter(\.hasMangledTypeName).map {
             return (
                 $0.name,
@@ -274,7 +278,7 @@ extension StructMetadata {
     
     func getValueBox<O>(forKey key: String, from object: O) -> AnyExistentialContainer {
         guard let offset = self.fieldOffset(for: key), let type = self.fieldType(for: key) else {
-            fatalError("Class '\(self.descriptor.name)' has no member '\(key)'")
+            fatalError("Class '\(self.typeDescriptor.name)' has no member '\(key)'")
         }
 
         let ptr = object~
@@ -297,7 +301,7 @@ extension StructMetadata {
 extension ClassMetadata {
     /// Does not traverse the class hierarchy
     private func objcIvar(for key: String) -> Ivar? {
-        guard let idx = self.descriptor.fields.records.map(\.name)
+        guard let idx = self.typeDescriptor.fields.records.map(\.name)
                 .firstIndex(where: { $0 == key }) else {
             return nil
         }
@@ -343,7 +347,7 @@ extension ClassMetadata {
             if let sup = self.superclassMetadata {
                 return sup.getValue(forKey: key, from: object)
             } else {
-                fatalError("Class '\(self.descriptor.name)' has no member '\(key)'")
+                fatalError("Class '\(self.typeDescriptor.name)' has no member '\(key)'")
             }
         }
 
@@ -356,7 +360,7 @@ extension ClassMetadata {
             if let sup = self.superclassMetadata {
                 return sup.getValueBox(forKey: key, from: object)
             } else {
-                fatalError("Class '\(self.descriptor.name)' has no member '\(key)'")
+                fatalError("Class '\(self.typeDescriptor.name)' has no member '\(key)'")
             }
         }
 
@@ -373,7 +377,7 @@ extension ClassMetadata {
             if let sup = self.superclassMetadata {
                 return sup.set(value: value, forKey: key, pointer: ptr)
             } else {
-                fatalError("Class '\(self.descriptor.name)' has no member '\(key)'")
+                fatalError("Class '\(self.typeDescriptor.name)' has no member '\(key)'")
             }
         }
         
@@ -564,6 +568,8 @@ extension Metadata {
                 } else {
                     return protocols
                 }
+            case .extendedExistential:
+                return "~ExtendedExistential"
             case .metatype:
                 return (self as! MetatypeMetadata).instanceMetadata.description + ".self"
             case .objcClassWrapper:
